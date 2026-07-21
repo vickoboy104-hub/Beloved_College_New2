@@ -2,11 +2,7 @@
 
 namespace Tests\Feature\Migration;
 
-use App\Enums\UserRole;
-use App\Models\SchoolClass;
-use App\Models\Student;
 use App\Models\SystemHeartbeat;
-use App\Models\User;
 use App\Models\WebsiteMedia;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +21,7 @@ class MigrationReadinessCommandTest extends TestCase
         config([
             'migration-readiness.report_disk' => 'local',
             'migration-readiness.report_directory' => 'tests',
+            'migration-readiness.expected_app_key_fingerprint' => null,
             'app.key' => 'base64:'.base64_encode(str_repeat('a', 32)),
             'queue.default' => 'database',
             'session.driver' => 'database',
@@ -76,6 +73,13 @@ class MigrationReadinessCommandTest extends TestCase
         $found = collect($report['entries'])->firstWhere('status', 'found');
         $this->assertSame(hash('sha256', 'Beloved College migration file'), $found['sha256']);
         $this->assertGreaterThan(0, $found['size_bytes']);
+
+        $this->artisan('migration:files', [
+            '--connection' => config('database.default'),
+            '--disk' => ['local'],
+            '--strict' => true,
+            '--output' => 'tests/files-strict.json',
+        ])->assertFailed();
     }
 
     public function test_reconcile_command_can_compare_two_read_only_connections(): void
@@ -113,6 +117,20 @@ class MigrationReadinessCommandTest extends TestCase
         $this->assertContains($report['status'], ['pass', 'warning']);
         $this->assertSame(0, $report['critical_count']);
         $this->assertNotEmpty($report['checks']);
+    }
+
+    public function test_preflight_fails_when_app_key_fingerprint_does_not_match(): void
+    {
+        config(['migration-readiness.expected_app_key_fingerprint' => str_repeat('f', 64)]);
+
+        $this->artisan('deployment:preflight', [
+            '--output' => 'tests/preflight-key-mismatch.json',
+        ])->assertFailed();
+
+        $report = json_decode(Storage::disk('local')->get('tests/preflight-key-mismatch.json'), true, flags: JSON_THROW_ON_ERROR);
+        $keyCheck = collect($report['checks'])->firstWhere('name', 'app_key');
+        $this->assertSame('critical', $keyCheck['status']);
+        $this->assertFalse($keyCheck['details']['expected_fingerprint_configured'] === false);
     }
 
     public function test_untrusted_host_is_rejected(): void
