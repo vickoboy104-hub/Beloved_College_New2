@@ -20,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustHosts(at: fn () => collect(config('platform.trusted_hosts', []))
+            ->map(fn (string $host) => '^'.preg_quote($host, '/').'$')
+            ->all());
+
         $middleware->web(append: [
             AuditUserActions::class,
             EnsureEmailIsVerifiedWhenRequired::class,
