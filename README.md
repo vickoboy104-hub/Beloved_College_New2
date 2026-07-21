@@ -41,9 +41,21 @@ The three surfaces are not separate school systems. They share one authenticatio
 - public website, CMS and semantic theme administration
 - targeted announcements, notification inboxes and Parent absence alerts
 - audit search, queue controls, system health and encrypted SMTP administration
-- permanent account security events and Admin-controlled identity policy on the current release branch
+- permanent account security events and Admin-controlled identity policy
+- read-only migration inventory, finance reconciliation, file checksums and deployment preflight on the current release branch
 
 See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md) for the current release-by-release status.
+
+## Migration readiness commands
+
+```bash
+php artisan migration:inventory --connection=legacy
+php artisan migration:reconcile --source=legacy --target=mysql --strict
+php artisan migration:files --connection=mysql --disk=local --disk=public --strict
+php artisan deployment:preflight --strict
+```
+
+These commands generate confidential JSON reports and do not perform the production data transfer.
 
 ## Non-negotiable requirements
 
@@ -64,6 +76,9 @@ See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_ST
 - [`docs/migration/FUNCTIONAL_PARITY_REGISTER.md`](docs/migration/FUNCTIONAL_PARITY_REGISTER.md)
 - [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md)
 - [`docs/migration/DATA_AND_FILE_PRESERVATION.md`](docs/migration/DATA_AND_FILE_PRESERVATION.md)
+- [`docs/migration/MIGRATION_DEPLOYMENT_READINESS.md`](docs/migration/MIGRATION_DEPLOYMENT_READINESS.md)
+- [`docs/migration/PRODUCTION_CUTOVER_RUNBOOK.md`](docs/migration/PRODUCTION_CUTOVER_RUNBOOK.md)
+- [`docs/migration/PRODUCTION_ROLLBACK_RUNBOOK.md`](docs/migration/PRODUCTION_ROLLBACK_RUNBOOK.md)
 - [`docs/ui/INTERFACE_PRINCIPLES.md`](docs/ui/INTERFACE_PRINCIPLES.md)
 - [`docs/workflows/LEARNING_RESULTS_CBT.md`](docs/workflows/LEARNING_RESULTS_CBT.md)
 - [`docs/workflows/FINANCE_AND_PAYMENTS.md`](docs/workflows/FINANCE_AND_PAYMENTS.md)
@@ -93,4 +108,4 @@ The default local database is SQLite. Production database credentials and secret
 
 ## Migration status
 
-The core school workflows, public website, payments, communications and operational administration are implemented and test-backed. The current release completes password recovery, email verification, session control and account security history. Production data and uploaded files have not yet been migrated or modified; cutover remains subject to backup, reconciliation, deployment rehearsal and role-based acceptance testing.
+The core school workflows, public website, payments, communications, operational administration and identity hardening are implemented and test-backed. The current release adds read-only migration and deployment evidence tooling. Production data and uploaded files have not been migrated or modified; staging rehearsal, reconciliation, role acceptance and formal cutover approval remain required.
