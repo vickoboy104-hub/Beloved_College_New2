@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Throwable;
 
 class PublicWebsiteService
 {
@@ -125,6 +126,9 @@ class PublicWebsiteService
      */
     public function homepage(): array
     {
+        $settings = Setting::publicSettings();
+        $liveStatistics = filter_var($settings['show_live_statistics'] ?? true, FILTER_VALIDATE_BOOL);
+
         return [
             'page' => $this->page('home'),
             'heroMedia' => $this->media('hero'),
@@ -136,13 +140,20 @@ class PublicWebsiteService
                 ->take(8)
                 ->get(),
             'announcements' => $this->publishedAnnouncements(6),
-            'stats' => [
-                ['label' => 'Students', 'value' => Student::query()->whereNull('archived_at')->count()],
-                ['label' => 'Staff', 'value' => StaffProfile::query()->whereNull('archived_at')->count()],
-                ['label' => 'Programmes', 'value' => 4],
-                ['label' => 'Portal Access', 'value' => '24/7'],
-            ],
-            'settings' => Setting::publicSettings(),
+            'stats' => $liveStatistics
+                ? [
+                    ['label' => 'Students', 'value' => Student::query()->whereNull('archived_at')->count()],
+                    ['label' => 'Staff', 'value' => StaffProfile::query()->whereNull('archived_at')->count()],
+                    ['label' => 'Programmes', 'value' => $settings['homepage_programme_count'] ?? 4],
+                    ['label' => 'Portal Access', 'value' => $settings['homepage_portal_access_label'] ?? '24/7'],
+                ]
+                : [
+                    ['label' => 'Students', 'value' => $settings['homepage_student_count'] ?? '0'],
+                    ['label' => 'Staff', 'value' => $settings['homepage_staff_count'] ?? '0'],
+                    ['label' => 'Programmes', 'value' => $settings['homepage_programme_count'] ?? '4'],
+                    ['label' => 'Portal Access', 'value' => $settings['homepage_portal_access_label'] ?? '24/7'],
+                ],
+            'settings' => $settings,
         ];
     }
 
@@ -274,8 +285,12 @@ class PublicWebsiteService
         $recipient = Setting::getValue('contact_recipient_email') ?: Setting::getValue('school_email');
 
         if ($recipient) {
-            Notification::route('mail', $recipient)
-                ->notify(new ContactMessageReceived($message));
+            try {
+                Notification::route('mail', $recipient)
+                    ->notify(new ContactMessageReceived($message));
+            } catch (Throwable $exception) {
+                report($exception);
+            }
         }
 
         return $message;
