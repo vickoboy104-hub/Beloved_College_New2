@@ -92,7 +92,7 @@ class ThemeManagerWorkflowTest extends TestCase
             ->get($this->webUrl('/admin/website/themes'))
             ->assertOk()
             ->assertSee('Classic and Dark Themes')
-            ->assertSee('Semantic tokens');
+            ->assertSee('semantic tokens');
 
         $this->actingAs($principal)
             ->get($this->webUrl('/admin/website/themes'))
