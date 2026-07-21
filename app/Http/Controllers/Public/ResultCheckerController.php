@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\StudentTermReport;
 use App\Models\Term;
 use App\Services\Reports\StudentReportService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ResultCheckerController extends Controller
@@ -24,7 +24,7 @@ class ResultCheckerController extends Controller
         ]);
     }
 
-    public function lookup(Request $request, StudentReportService $reports): View
+    public function lookup(Request $request, StudentReportService $reports): Response
     {
         $data = $request->validate([
             'admission_no' => ['required', 'string', 'max:255'],
@@ -37,9 +37,13 @@ class ResultCheckerController extends Controller
             $data['pin'],
         );
 
-        return view('public.result-checker.show', [
-            'report' => $report,
-            'subjectRows' => $reports->rowsForReport($report),
-        ]);
+        return response()
+            ->view('public.result-checker.show', [
+                'report' => $report,
+                'subjectRows' => $reports->rowsForReport($report),
+            ])
+            ->header('Cache-Control', 'no-store, private')
+            ->header('Pragma', 'no-cache')
+            ->header('X-Content-Type-Options', 'nosniff');
     }
 }
