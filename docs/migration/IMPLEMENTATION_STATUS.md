@@ -107,11 +107,7 @@ This document summarizes completed New2 releases without replacing the detailed 
 - timestamped JSON reports
 - staging checklist, production cutover and rollback runbooks
 
-## Current release branch
-
-`workflows/staging-rehearsal-orchestration`
-
-The branch adds:
+### Staging rehearsal orchestration and evidence gating
 
 - one command for the complete staging rehearsal
 - isolated legacy private/public file roots
@@ -126,28 +122,48 @@ The branch adds:
 - evidence manifest with SHA-256 and byte size for every package file
 - preservation of pending or failed rehearsal evidence
 
-This release is complete only after its pull request passes Composer validation, fresh migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
+## Current delivery state
 
-## Remaining after rehearsal orchestration
+The software implementation is complete through staging-rehearsal orchestration. The repository is not blocked by missing application code; it is blocked by protected external inputs and human acceptance evidence.
 
-### Actual staging rehearsal and production cutover
+No claim of a completed staging rehearsal or production migration is made until a real evidence package is generated from approved staging assets.
 
-These require protected infrastructure and approved copies of legacy assets:
+## External-input gate before staging rehearsal
 
-- create a read-only legacy database user
-- restore a recent legacy database copy into staging
-- copy all legacy private and public uploads into isolated staging roots
-- supply the original APP_KEY through protected environment configuration
-- run the packaged rehearsal command
-- correct every critical mismatch
-- complete all role evidence and owner approvals
-- rehearse backup and rollback
-- configure production DNS, TLS, queue, scheduler, SMTP and payment callbacks
-- execute the approved production cutover
+The following must be supplied outside source control:
 
-### Explicit product-decision modules
+- a recent legacy database backup restored to an isolated staging database
+- a read-only legacy database user
+- complete legacy private uploads copied to an isolated staging root
+- complete legacy public uploads copied to an isolated staging root
+- the original production `APP_KEY` or its approved SHA-256 fingerprint
+- the exact New2 commit SHA selected for rehearsal
+- a named migration operator
+- the legacy backup/snapshot identifier and timestamp
+- staging SMTP, queue, scheduler and payment-sandbox configuration
+- named role testers for Public Visitor, Student, Parent, Teacher, Accountant, Principal, Admin and Super Admin
+- named technical, migration, operations, finance and rollback approvers
 
-These require detailed workflow approval before implementation:
+The exact acquisition and custody checklist is documented in `PROTECTED_STAGING_INPUTS.md`.
+
+## Next executable stage
+
+Once the external-input gate is satisfied:
+
+1. restore the approved legacy database copy in staging
+2. mount the approved private and public legacy file roots
+3. configure the original `APP_KEY` through protected environment settings
+4. run `deployment:rehearse` against separate source and target connections
+5. correct every critical mismatch
+6. complete all role evidence
+7. obtain all named owner approvals
+8. rehearse backup and rollback
+9. configure production DNS, TLS, queue, scheduler, SMTP and payment callbacks
+10. execute production cutover only when the evidence package reports `cutover_eligible: true`
+
+## Explicit product-decision modules
+
+These remain outside the approved implementation scope until detailed workflow requirements are supplied:
 
 - staged online admissions application
 - timetable
