@@ -45,6 +45,7 @@ Route::middleware(['auth', 'active'])->group(function (): void {
 
         Route::prefix('portal')->name('portal.')->middleware('role:student,parent')->group(function (): void {
             Route::get('/', [StudentPortalController::class, 'index'])->name('index');
+            Route::get('/reports/{report}', [StudentPortalController::class, 'report'])->name('reports.show');
             Route::post('/assignments/{assignment}/submit', [StudentPortalController::class, 'submitAssignment'])
                 ->middleware('role:student')
                 ->name('assignments.submit');
