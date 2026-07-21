@@ -61,39 +61,47 @@ This document summarizes completed New2 releases without replacing the detailed 
 - signed idempotent webhooks
 - safe PalmPay unavailability until merchant verification is supplied
 
-## Current release branch
+### Public website, CMS and themes
 
-`workflows/public-cms-theme-manager`
-
-The branch adds:
-
-- complete public website
-- public CMS
-- hero and gallery media
-- testimonials
+- complete responsive public website
+- Home, About, Admissions, Contact, News and Gallery
+- public CMS and protected public media
+- testimonials and newsletter consent
 - stored and queued contact enquiries
-- newsletter consent records
 - school identity and contact settings
 - semantic Classic and Dark theme tokens
 - preview, draft, publish, revision history and rollback
 - Admin-controlled user theme selection
 
-This release is complete only after its pull request passes Composer validation, migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
+## Current release branch
 
-## Remaining after the public CMS release
+`workflows/communication-system-administration`
 
-### Communication and system administration
+The branch adds:
 
-- targeted announcement audiences
-- in-app notification centre
-- absence notification events
+- targeted role, class and individual announcements
+- portal notification inboxes and unread counters
+- scheduled dispatch and expiry
+- idempotent delivery history
+- Parent absence alerts
 - searchable audit-log viewer
 - system-health dashboard
-- SMTP administration and delivery diagnostics
+- scheduler heartbeat
+- queue and failed-job controls
+- encrypted SMTP administration
+- synchronous mail diagnostics
+- operational thresholds and retention settings
+
+This release is complete only after its pull request passes Composer validation, migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
+
+## Remaining after the communication/system release
 
 ### Identity hardening
 
-- complete password-reset and email-verification acceptance testing
+- password-reset acceptance testing and final interface
+- email-verification workflow and acceptance testing
+- active session review and revocation
+- privileged-role security-event notifications
 - privileged-role two-factor authentication, subject to product approval
 
 ### Product-decision modules
@@ -105,7 +113,7 @@ These require explicit workflow requirements before implementation:
 - transcript requests
 - spreadsheet import with preview
 - payroll disbursement
-- backup dashboard tied to the selected hosting environment
+- hosting-specific backup dashboard and restore workflow
 
 ### Production migration and deployment
 

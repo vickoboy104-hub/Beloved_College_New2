@@ -1,0 +1,46 @@
+.portal-theme-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.topbar-notification-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    background: var(--surface);
+    padding: 0.45rem 0.65rem;
+    color: var(--text);
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.topbar-notification-link strong {
+    display: grid;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--danger);
+    color: #fff;
+    font-size: 0.68rem;
+}
+
+@media (max-width: 760px) {
+    .portal-theme-controls {
+        gap: 0.4rem;
+    }
+
+    .topbar-notification-link {
+        padding: 0.4rem 0.5rem;
+        font-size: 0;
+    }
+
+    .topbar-notification-link::before {
+        content: 'Alerts';
+        font-size: 0.72rem;
+    }
+}

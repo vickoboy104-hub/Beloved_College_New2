@@ -18,6 +18,7 @@ class AttendanceRecord extends Model
         'attendance_date',
         'status',
         'note',
+        'absence_notified_at',
     ];
 
     protected function casts(): array
@@ -25,6 +26,7 @@ class AttendanceRecord extends Model
         return [
             'attendance_date' => 'date',
             'status' => AttendanceStatus::class,
+            'absence_notified_at' => 'datetime',
         ];
     }
 

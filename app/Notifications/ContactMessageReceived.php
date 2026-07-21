@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\ContactMessage;
+use App\Services\System\MailConfigurationService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,7 +13,10 @@ class ContactMessageReceived extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public readonly ContactMessage $contactMessage) {}
+    public function __construct(public readonly ContactMessage $contactMessage)
+    {
+        $this->afterCommit();
+    }
 
     /**
      * @return array<int, string>
@@ -24,6 +28,8 @@ class ContactMessageReceived extends Notification implements ShouldQueue
 
     public function toMail(object $notifiable): MailMessage
     {
+        app(MailConfigurationService::class)->apply();
+
         return (new MailMessage)
             ->subject('New website enquiry: '.($this->contactMessage->subject ?: 'General enquiry'))
             ->greeting('A new public website enquiry has been received.')

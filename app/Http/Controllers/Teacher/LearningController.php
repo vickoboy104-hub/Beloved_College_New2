@@ -16,6 +16,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Term;
 use App\Services\Academics\TeacherAccessService;
+use App\Services\Communication\CommunicationService;
 use App\Services\Learning\AssignmentSubmissionService;
 use App\Services\Learning\AttendanceService;
 use App\Services\Learning\LearningService;
@@ -179,8 +180,11 @@ class LearningController extends Controller
         return back()->with('status', 'Student result recorded successfully.');
     }
 
-    public function recordAttendance(Request $request, AttendanceService $attendance): RedirectResponse
-    {
+    public function recordAttendance(
+        Request $request,
+        AttendanceService $attendance,
+        CommunicationService $communication,
+    ): RedirectResponse {
         $data = $request->validate([
             'school_class_id' => ['required', 'exists:school_classes,id'],
             'attendance_date' => ['required', 'date'],
@@ -195,6 +199,7 @@ class LearningController extends Controller
             $data['attendance_date'],
             $data['records'],
         );
+        $records->each(fn (AttendanceRecord $record) => $communication->notifyAbsence($record));
 
         return back()->with('status', $records->count().' attendance records saved.');
     }

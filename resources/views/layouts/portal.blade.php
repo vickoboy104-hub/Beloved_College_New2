@@ -7,16 +7,25 @@
     $surfacePrefix = $surface === \App\Enums\PortalSurface::AppPortal ? 'app' : 'web';
     $settings = \App\Models\Setting::publicSettings();
     $schoolName = $settings['school_name'] ?? 'Beloved College';
+    $unreadNotificationCount = $user->unreadNotifications()->count();
     $isTeacherWorkspaceUser = $user->hasAnyRole('super_admin', 'admin', 'principal', 'teacher');
     $isStudentPortalUser = $user->hasAnyRole('student', 'parent');
     $isReportAdministrator = $surfacePrefix === 'web' && $user->hasAnyRole('super_admin', 'admin', 'principal');
     $isFinanceUser = $surfacePrefix === 'web' && $user->hasPermission('finance.manage');
     $isWebsiteManager = $surfacePrefix === 'web' && $user->hasPermission('website.manage_content');
+    $isCommunicationManager = $surfacePrefix === 'web' && $user->hasPermission('communication.manage_announcements');
+    $isSystemManager = $surfacePrefix === 'web' && $user->hasPermission('system.manage_settings');
     $navItems = [
         [
             'label' => 'Dashboard',
             'route' => $surfacePrefix.'.dashboard',
             'active' => $surfacePrefix.'.dashboard',
+            'visible' => true,
+        ],
+        [
+            'label' => 'Notifications'.($unreadNotificationCount > 0 ? ' ('.$unreadNotificationCount.')' : ''),
+            'route' => $surfacePrefix.'.notifications.index',
+            'active' => $surfacePrefix.'.notifications.*',
             'visible' => true,
         ],
         [
@@ -74,10 +83,22 @@
             'visible' => $isFinanceUser,
         ],
         [
+            'label' => 'Communication',
+            'route' => 'web.admin.communication.index',
+            'active' => 'web.admin.communication.*',
+            'visible' => $isCommunicationManager,
+        ],
+        [
             'label' => 'Website',
             'route' => 'web.admin.website.index',
             'active' => 'web.admin.website.*',
             'visible' => $isWebsiteManager,
+        ],
+        [
+            'label' => 'System',
+            'route' => 'web.admin.system.index',
+            'active' => 'web.admin.system.*',
+            'visible' => $isSystemManager,
         ],
         [
             'label' => 'Teacher Access',
@@ -135,6 +156,7 @@
                         <strong>{{ $surface->label() }}</strong>
                     </div>
                     <div class="portal-theme-controls">
+                        <a class="topbar-notification-link" href="{{ route($surfacePrefix.'.notifications.index') }}">Notifications @if($unreadNotificationCount > 0)<strong>{{ $unreadNotificationCount }}</strong>@endif</a>
                         @if ($themeService->userSelectionAllowed())
                             <form method="POST" action="{{ route($surfacePrefix.'.theme-preference.update') }}">
                                 @csrf
