@@ -21,14 +21,10 @@ class LoginIdentifierResolver
         $normalized = mb_strtolower($identifier);
 
         $user = User::query()
-            ->where(function ($query) use ($identifier, $normalized): void {
+            ->where(function ($query) use ($normalized): void {
                 $query
                     ->whereRaw('LOWER(email) = ?', [$normalized])
                     ->orWhereRaw('LOWER(name) = ?', [$normalized]);
-
-                if (ctype_digit($identifier)) {
-                    $query->orWhere('phone', $identifier);
-                }
             })
             ->first();
 
