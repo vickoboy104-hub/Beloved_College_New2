@@ -142,7 +142,7 @@ class MigrationReadinessCommandTest extends TestCase
 
         foreach ($configuredHosts as $host) {
             $this->assertContains($host, $trustedHosts);
-            $this->assertContains('^'.preg_quote($host, '/').'$',$patterns);
+            $this->assertContains('^'.preg_quote($host, '/').'$', $patterns);
         }
 
         $this->assertNotContains('untrusted.example', $trustedHosts);
