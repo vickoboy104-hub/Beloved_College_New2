@@ -20,7 +20,7 @@ class CbtController extends Controller
         Assessment $assessment,
         PortalStudentResolver $resolver,
         CbtService $cbt,
-    ): View {
+    ): View|RedirectResponse {
         if (! $request->user()->hasAnyRole(UserRole::Student)) {
             throw ValidationException::withMessages([
                 'assessment' => 'Parents may review CBT status but cannot open or submit an examination attempt.',
@@ -29,6 +29,14 @@ class CbtController extends Controller
 
         $student = $resolver->resolve($request->user());
         $attempt = $cbt->startAttempt($student, $assessment);
+
+        if ($attempt->submitted_at || $attempt->status !== 'in_progress') {
+            return redirect()->route(
+                $request->routeIs('app.*') ? 'app.portal.cbt.result' : 'web.portal.cbt.result',
+                $attempt,
+            );
+        }
+
         $assessment->load(['subject', 'term.academicSession', 'cbtQuestions.options']);
         $attempt->load('answers');
 
