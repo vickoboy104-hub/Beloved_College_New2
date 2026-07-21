@@ -65,15 +65,18 @@
             >
         </label>
 
-        <label class="check-row">
-            <input name="remember" type="checkbox" value="1">
-            <span>Keep me signed in on this device</span>
-        </label>
+        <div class="login-options-row">
+            <label class="check-row">
+                <input name="remember" type="checkbox" value="1">
+                <span>Keep me signed in on this device</span>
+            </label>
+            <a href="{{ route($surfacePrefix.'.password.request') }}">Forgot password?</a>
+        </div>
 
         <button class="primary-button" type="submit">Sign in</button>
     </form>
 
     <p class="form-help">
-        Account access is issued by the school. Contact the school office when you cannot recover your login details.
+        Recovery links require an email address assigned to the account. Contact the school office when no email is available.
     </p>
 @endsection
