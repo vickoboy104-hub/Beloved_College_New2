@@ -41,6 +41,7 @@ class PrivateLearningMediaController extends Controller
     {
         $submission->loadMissing('assignment', 'student');
         $actor = $request->user();
+        abort_if($actor->must_change_password, 403);
         $isOwner = $actor->studentProfile?->id === $submission->student_id;
         $isParent = $actor->hasAnyRole(UserRole::Parent)
             && $submission->student->parent_user_id === $actor->id;
@@ -81,6 +82,10 @@ class PrivateLearningMediaController extends Controller
 
     private function canViewPair(User $actor, mixed $schoolClassId, mixed $subjectId): bool
     {
+        if ($actor->must_change_password) {
+            return false;
+        }
+
         if ($actor->hasAnyRole(UserRole::Student)) {
             return (int) $actor->studentProfile?->school_class_id === (int) $schoolClassId;
         }
