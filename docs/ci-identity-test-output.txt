@@ -1,0 +1,226 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthat true is true[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\AcademicRelationshipTest[39m
+  [32;1m✓[39;22m[90m [39m[90msession term class subject and teacher access remain connected[39m[90m      [39m [90m0.17s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\PromotionWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mrecommended promotion moves student records history and generates f[39m[90m…[39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\TeacherAccessWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher access can be assigned revoked and restored[39m[90m                 [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal has privileged academic visibility without assignments[39m[90m    [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\PeopleAndAcademicsWorkspaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can open all people and academic workspaces[39m[90m                   [39m [90m0.06s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal can open academic and people workspaces[39m[90m                   [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mteacher cannot open student or staff administration[39m[90m                 [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\PeopleWorkflowHttpTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can register student and receives one time credentials[39m[90m        [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal cannot create admin through staff route[39m[90m                   [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Audit\AuditLogTest[39m
+  [32;1m✓[39;22m[90m [39m[90mauthenticated write is logged without request secrets[39m[90m               [39m [90m0.05s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\Auth\EmailVerificationWorkflowTest[39m
+  [31;1m⨯[39;22m[90m [39m[90muser can request and complete surface aware signed verification[39m[90m     [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mverification policy redirects only unverified users with email[39m[90m      [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mtemporary password replacement precedes email verification[39m[90m          [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid signature cannot verify email[39m[90m                               [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\LegacyLoginTest[39m
+  [32;1m✓[39;22m[90m [39m[90muser can sign in with email[39m[90m                                         [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent can sign in with admission number[39m[90m                           [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent can sign in with student id[39m[90m                                 [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff can sign in with employee number[39m[90m                              [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent login rejects staff accounts[39m[90m                                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90minactive account cannot sign in[39m[90m                                     [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\PasswordChangeTest[39m
+  [32;1m✓[39;22m[90m [39m[90mtemporary password user is redirected before dashboard access[39m[90m       [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90muser can replace temporary password[39m[90m                                 [39m [90m0.02s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\Auth\PasswordRecoveryWorkflowTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mreset request is private and uses the requesting surface[39m[90m            [39m [90m0.21s[39m  
+  [32;1m✓[39;22m[90m [39m[90mvalid reset updates password revokes sessions and records security[39m[90m… [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid reset token does not change password or revoke sessions[39m[90m     [39m [90m0.22s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\SessionSecurityWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90muser can review and revoke only owned non current sessions[39m[90m          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpassword change revokes other sessions and records alert[39m[90m            [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90msuccessful login updates history and records security event[39m[90m         [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Authorization\PermissionServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90msuper admin has every permission[39m[90m                                    [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin controls the operational platform but not super admin account[39m[90m…[39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal keeps academic control without theme or gateway control[39m[90m   [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexplicit override can deny a default role permission[39m[90m                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin cannot change super admin permissions[39m[90m                         [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Cbt\CbtScoreSyncTest[39m
+  [32;1m✓[39;22m[90m [39m[90msubmitted attempt waits for theory and then becomes graded[39m[90m          [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Cbt\CompleteCbtWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mobjective and theory attempt survives global shutdown and finishes[39m[90m… [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Communication\CommunicationWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mclass target dispatches to student and linked parent once[39m[90m           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdue scheduled role announcement is dispatched by command[39m[90m            [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mparent absence alert is idempotent[39m[90m                                  [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Communication\NotificationInboxTest[39m
+  [32;1m✓[39;22m[90m [39m[90muser can read and remove own notification[39m[90m                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90muser cannot modify another users notification[39m[90m                       [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthe application returns the public website[39m[90m                          [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceBalanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90minvoice balance moves from unpaid to part paid and paid[39m[90m             [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mgrouped payment is allocated by due date without exceeding balances[39m[90m [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceOperationsWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mfee creation invoice generation manual payment and overpayment are[39m[90m… [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mduplicate fee scope is rejected[39m[90m                                     [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceWorkspaceAndGatewaySettingsTest[39m
+  [32;1m✓[39;22m[90m [39m[90maccountant principal and admin can open finance but only admin conf[39m[90m…[39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mgateway secrets are encrypted and blank updates preserve them[39m[90m       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent and linked parent can open payment portal[39m[90m                   [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Learning\LearningWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher can publish create assess record and grade with exact acces[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbulk attendance updates the class register[39m[90m                          [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Media\PrivateLearningMediaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mstudent parent and assigned teacher can access learning files[39m[90m       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90munassigned teacher cannot access submission file[39m[90m                    [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Media\PrivateProfileMediaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mlinked parent can view student private avatar[39m[90m                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90munassigned teacher cannot view student private avatar[39m[90m               [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can view student private avatar[39m[90m                               [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\CommunicationSystemSchemaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mnotification and operational schema exists[39m[90m                          [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\IdentitySecuritySchemaTest[39m
+  [32;1m✓[39;22m[90m [39m[90midentity security schema exists without replacing legacy auth table[39m[90m…[39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\LegacySchemaCompatibilityTest[39m
+  [32;1m✓[39;22m[90m [39m[90mall verified legacy tables exist[39m[90m                                    [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcomplete student history columns are available[39m[90m                      [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfinance and report fields are preserved[39m[90m                             [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\PublicCmsSchemaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic cms newsletter media and theme tables exist[39m[90m                  [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Payments\PaystackWebhookTest[39m
+  [32;1m✓[39;22m[90m [39m[90msigned webhook is server verified and idempotent[39m[90m                    [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid signature is rejected without changing payment[39m[90m              [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Payments\VerifiedCheckoutWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mbrowser callback status is ignored until server verification succee[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbundle checkout allocates verified payment in due order[39m[90m             [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\People\StaffLifecycleServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mprincipal can create teacher but cannot create admin[39m[90m                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can create admin but not super admin[39m[90m                          [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff archive and restore are reversible[39m[90m                            [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\People\StudentLifecycleServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mregistration creates student parent credentials and mandatory invoi[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent archive and restore preserve the record[39m[90m                     [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Portal\LearningPortalWorkspaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher workspaces render on web and mobile surfaces[39m[90m                [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent and linked parent portals render[39m[90m                            [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreport administration and public checker forms render[39m[90m               [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\PortalSurfaceRoutingTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic host resolves to the public website surface[39m[90m                  [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mweb portal host resolves to the full web surface[39m[90m                    [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mapp portal host resolves to the mobile surface[39m[90m                      [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Reports\StudentReportWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreports compile positions publish and validate public checker pin[39m[90m   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Settings\SettingEncryptionTest[39m
+  [32;1m✓[39;22m[90m [39m[90msensitive settings are encrypted at rest and decrypted for internal[39m[90m…[39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mblank admin secret submission preserves the existing secret[39m[90m         [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\System\IdentitySecurityPolicyTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can update identity policy and principal cannot[39m[90m               [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90midentity administration renders readiness counts and security event[39m[90m…[39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\System\SystemAdministrationWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can open system and principal can only manage communication[39m[90m   [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mmail password is encrypted blank update preserves it and test deliv[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90maudit filters render and failed job can be deleted[39m[90m                  [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ThemeContractTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthe platform exposes exactly classic and dark themes[39m[90m                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid default theme falls back to classic[39m[90m                         [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdark can be selected as the default theme[39m[90m                           [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Website\PublicWebsiteWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic pages render from fallback content[39m[90m                           [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontact message is stored and queued for configured recipient[39m[90m       [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnewsletter records consent and resubscription[39m[90m                       [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90monly published due news is public[39m[90m                                   [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Website\ThemeManagerWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can publish and rollback classic theme revisions[39m[90m              [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90minaccessible colour pair is rejected[39m[90m                                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin controls whether users may select classic or dark[39m[90m             [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin theme workspace renders and principal is forbidden[39m[90m            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Website\WebsiteCmsWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can manage website but principal cannot[39m[90m                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can publish page content visible on public site[39m[90m               [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublished uploaded media is served and hidden media is not[39m[90m          [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can update public school identity settings[39m[90m                    [39m [90m0.02s[39m  
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\EmailVerificationWorkflowTest[22m [90m>[39m user can reque…   
+[39;1m  The expected [App\Notifications\VerifyEmailAddressNotification] notification was not sent.
+Failed asserting that false is true.[39;22m
+
+  at [32mvendor/laravel/framework/src/Illuminate/Support/Testing/Fakes/NotificationFake.php[39m:[32m89[39m
+     85▕         if (is_numeric($callback)) {
+     86▕             return $this->assertSentToTimes($notifiable, $notification, $callback);
+     87▕         }
+     88▕ 
+  ➜  89▕         PHPUnit::assertTrue(
+     90▕             $this->sent($notifiable, $notification, $callback)->count() > 0,
+     91▕             "The expected [{$notification}] notification was not sent."
+     92▕         );
+     93▕     }
+
+      [2m+2 vendor frames [22m
+  [33m3   [39m[39;1mtests/Feature/Auth/EmailVerificationWorkflowTest.php[39;22m:[39;1m38[39;22m
+
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Auth\PasswordRecoveryWorkflowTest[22m [90m>[39m reset request i…   
+[39;1m  The expected [App\Notifications\PasswordResetLinkNotification] notification was not sent.
+Failed asserting that false is true.[39;22m
+
+  at [32mvendor/laravel/framework/src/Illuminate/Support/Testing/Fakes/NotificationFake.php[39m:[32m89[39m
+     85▕         if (is_numeric($callback)) {
+     86▕             return $this->assertSentToTimes($notifiable, $notification, $callback);
+     87▕         }
+     88▕ 
+  ➜  89▕         PHPUnit::assertTrue(
+     90▕             $this->sent($notifiable, $notification, $callback)->count() > 0,
+     91▕             "The expected [{$notification}] notification was not sent."
+     92▕         );
+     93▕     }
+
+      [2m+2 vendor frames [22m
+  [33m3   [39m[39;1mtests/Feature/Auth/PasswordRecoveryWorkflowTest.php[39;22m:[39;1m32[39;22m
+
+
+  [90mTests:[39m    [31;1m2 failed[39;22m[90m,[39m[39m [39m[32;1m98 passed[39;22m[90m (544 assertions)[39m
+  [90mDuration:[39m [39m2.27s[39m
+
