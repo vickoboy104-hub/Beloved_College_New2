@@ -26,7 +26,8 @@ The three surfaces are not separate school systems. They share one authenticatio
 
 ## Implemented platform areas
 
-- identity, audience-aware authentication and permission boundaries
+- audience-aware authentication, password recovery, email verification and database-session security
+- role and permission boundaries
 - Students, Parents, Staff and reversible archival
 - teacher class-subject access
 - academic sessions, terms, classes, subjects and promotions
@@ -37,7 +38,10 @@ The three surfaces are not separate school systems. They share one authenticatio
 - fee catalogue, invoices, collections and receipts
 - verified Paystack, Flutterwave and Monnify settlement
 - responsive Classic and Dark interfaces
-- public website, CMS and semantic theme administration on the current release branch
+- public website, CMS and semantic theme administration
+- targeted announcements, notification inboxes and Parent absence alerts
+- audit search, queue controls, system health and encrypted SMTP administration
+- permanent account security events and Admin-controlled identity policy on the current release branch
 
 See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md) for the current release-by-release status.
 
@@ -64,6 +68,8 @@ See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_ST
 - [`docs/workflows/LEARNING_RESULTS_CBT.md`](docs/workflows/LEARNING_RESULTS_CBT.md)
 - [`docs/workflows/FINANCE_AND_PAYMENTS.md`](docs/workflows/FINANCE_AND_PAYMENTS.md)
 - [`docs/workflows/PUBLIC_CMS_THEME_MANAGER.md`](docs/workflows/PUBLIC_CMS_THEME_MANAGER.md)
+- [`docs/workflows/COMMUNICATION_SYSTEM_ADMINISTRATION.md`](docs/workflows/COMMUNICATION_SYSTEM_ADMINISTRATION.md)
+- [`docs/workflows/IDENTITY_HARDENING.md`](docs/workflows/IDENTITY_HARDENING.md)
 
 ## Local setup
 
@@ -87,4 +93,4 @@ The default local database is SQLite. Production database credentials and secret
 
 ## Migration status
 
-The core internal school workflows are implemented and test-backed. The current release completes the public website, CMS and two-theme administration. Production data and uploaded files have not yet been migrated or modified; cutover remains subject to backup, reconciliation, deployment rehearsal and role-based acceptance testing.
+The core school workflows, public website, payments, communications and operational administration are implemented and test-backed. The current release completes password recovery, email verification, session control and account security history. Production data and uploaded files have not yet been migrated or modified; cutover remains subject to backup, reconciliation, deployment rehearsal and role-based acceptance testing.
