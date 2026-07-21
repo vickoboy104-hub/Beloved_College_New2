@@ -7,6 +7,7 @@ use App\Enums\PortalSurface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Identity\LoginIdentifierResolver;
+use App\Services\Identity\SecurityEventService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +34,11 @@ class AuthenticatedSessionController extends Controller
     public function store(
         LoginRequest $request,
         LoginIdentifierResolver $resolver,
+        SecurityEventService $security,
     ): RedirectResponse {
         $request->authenticate($resolver);
         $request->session()->regenerate();
+        $security->loginSucceeded($request->user(), $request);
 
         return redirect()->intended(route($this->surfaceRoute('dashboard'), absolute: false));
     }
