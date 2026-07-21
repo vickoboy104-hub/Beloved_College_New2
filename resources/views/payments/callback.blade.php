@@ -1,14 +1,20 @@
+@php
+    $themeService = app(\App\Services\Website\ThemeService::class);
+    $themeMode = $themeService->defaultMode();
+    $themeTokens = $themeService->tokens($themeMode);
+    $settings = \App\Models\Setting::publicSettings();
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="classic">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ $themeMode->value }}" style="{{ $themeService->cssVariables($themeTokens) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Payment Status | {{ config('app.name') }}</title>
+        <title>Payment Status | {{ $settings['school_name'] ?? 'Beloved College' }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="payment-callback-page">
         <main class="payment-callback-shell">
-            <a class="portal-brand" href="{{ route('public.home') }}"><span class="brand-mark">BC</span><span><strong>Beloved College</strong><small>Payment verification</small></span></a>
+            <a class="portal-brand" href="{{ route('public.home') }}"><span class="brand-mark">BC</span><span><strong>{{ $settings['school_name'] ?? 'Beloved College' }}</strong><small>Payment verification</small></span></a>
 
             <section class="callback-status callback-status-{{ $status }}">
                 <p class="eyebrow">{{ $provider->label() }}</p>

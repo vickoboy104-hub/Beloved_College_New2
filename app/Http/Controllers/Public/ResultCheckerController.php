@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use App\Models\Term;
 use App\Services\Reports\StudentReportService;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class ResultCheckerController extends Controller
                     ->whereNotNull('published_at'))
                 ->latest('start_date')
                 ->get(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -41,6 +43,7 @@ class ResultCheckerController extends Controller
             ->view('public.result-checker.show', [
                 'report' => $report,
                 'subjectRows' => $reports->rowsForReport($report),
+                'settings' => Setting::publicSettings(),
             ])
             ->header('Cache-Control', 'no-store, private')
             ->header('Pragma', 'no-cache')

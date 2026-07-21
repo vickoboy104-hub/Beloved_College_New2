@@ -1,12 +1,17 @@
 @php
     $surface = $surface ?? $portalSurface;
-    $theme = auth()->user()->effectiveTheme();
-    $surfacePrefix = $surface === \App\Enums\PortalSurface::AppPortal ? 'app' : 'web';
     $user = auth()->user();
+    $themeService = app(\App\Services\Website\ThemeService::class);
+    $theme = $user->effectiveTheme();
+    $themeTokens = $themeService->tokens($theme);
+    $surfacePrefix = $surface === \App\Enums\PortalSurface::AppPortal ? 'app' : 'web';
+    $settings = \App\Models\Setting::publicSettings();
+    $schoolName = $settings['school_name'] ?? 'Beloved College';
     $isTeacherWorkspaceUser = $user->hasAnyRole('super_admin', 'admin', 'principal', 'teacher');
     $isStudentPortalUser = $user->hasAnyRole('student', 'parent');
     $isReportAdministrator = $surfacePrefix === 'web' && $user->hasAnyRole('super_admin', 'admin', 'principal');
     $isFinanceUser = $surfacePrefix === 'web' && $user->hasPermission('finance.manage');
+    $isWebsiteManager = $surfacePrefix === 'web' && $user->hasPermission('website.manage_content');
     $navItems = [
         [
             'label' => 'Dashboard',
@@ -69,6 +74,12 @@
             'visible' => $isFinanceUser,
         ],
         [
+            'label' => 'Website',
+            'route' => 'web.admin.website.index',
+            'active' => 'web.admin.website.*',
+            'visible' => $isWebsiteManager,
+        ],
+        [
             'label' => 'Teacher Access',
             'route' => 'web.admin.teacher-access.index',
             'active' => 'web.admin.teacher-access.*',
@@ -77,12 +88,12 @@
     ];
 @endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ $theme->value }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ $theme->value }}" style="{{ $themeService->cssVariables($themeTokens) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title') | {{ config('app.name') }}</title>
+        <title>@yield('title') | {{ $schoolName }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="portal-page" data-portal-surface="{{ $surface->value }}">
@@ -91,7 +102,7 @@
                 <a class="portal-brand" href="{{ route($surfacePrefix.'.dashboard') }}">
                     <span class="brand-mark">BC</span>
                     <span>
-                        <strong>Beloved College</strong>
+                        <strong>{{ $schoolName }}</strong>
                         <small>{{ $surface->label() }}</small>
                     </span>
                 </a>
@@ -123,7 +134,17 @@
                         <p class="eyebrow">{{ $user->roleLabel() }}</p>
                         <strong>{{ $surface->label() }}</strong>
                     </div>
-                    <span class="theme-indicator">{{ $theme->label() }} theme</span>
+                    <div class="portal-theme-controls">
+                        @if ($themeService->userSelectionAllowed())
+                            <form method="POST" action="{{ route($surfacePrefix.'.theme-preference.update') }}">
+                                @csrf
+                                @method('PUT')
+                                <label><span class="sr-only">Theme</span><select name="preferred_theme" onchange="this.form.submit()"><option value="classic" @selected($theme === \App\Enums\ThemeMode::Classic)>Classic</option><option value="dark" @selected($theme === \App\Enums\ThemeMode::Dark)>Dark</option></select></label>
+                            </form>
+                        @else
+                            <span class="theme-indicator">{{ $theme->label() }} theme</span>
+                        @endif
+                    </div>
                 </header>
 
                 <main class="portal-main">

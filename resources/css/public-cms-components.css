@@ -1,0 +1,85 @@
+.public-checker-section {
+    width: min(100% - 2rem, 42rem);
+    margin: 0 auto;
+    padding: clamp(4rem, 12vw, 9rem) 0;
+}
+
+.public-checker-section .public-checker-header {
+    display: grid;
+    gap: 1rem;
+}
+
+.public-checker-section .public-checker-header h1 {
+    margin: 0;
+    font-size: clamp(2.8rem, 8vw, 5.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.06em;
+}
+
+.public-checker-section .public-checker-header > p:last-child,
+.public-checker-section .public-checker-help {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+.public-checker-section .public-checker-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 4px solid var(--primary);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1.25rem 0;
+}
+
+.public-checker-section .public-checker-form input,
+.public-checker-section .public-checker-form select {
+    border-color: var(--border);
+    background: var(--page);
+    color: var(--text);
+}
+
+.public-checker-section .public-checker-help {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+}
+
+.payment-callback-page {
+    background:
+        radial-gradient(circle at 85% 12%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 24rem),
+        var(--page);
+    color: var(--text);
+}
+
+.callback-status {
+    border-bottom-color: var(--border);
+    background: var(--surface);
+}
+
+.callback-status > p:not(.eyebrow) {
+    color: var(--text-muted);
+}
+
+.callback-facts {
+    border-top-color: var(--border);
+    border-bottom-color: var(--border);
+}
+
+.callback-facts dt {
+    color: var(--text-muted);
+}
+
+.public-result-page {
+    background: var(--page);
+}
+
+.public-result-toolbar {
+    color: var(--text);
+}
+
+@media print {
+    .public-result-page {
+        background: #fff !important;
+    }
+}

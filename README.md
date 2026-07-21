@@ -2,9 +2,9 @@
 
 A Laravel-first rebuild of the Beloved College public website and school management system.
 
-This repository is a new application codebase. It will preserve the approved database records, uploaded files, business rules, calculations, and operational functions from `vickoboy104-hub/belovedcollege_new` while replacing the previous presentation architecture.
+This repository is a new application codebase. It preserves the approved database records, uploaded files, business rules, calculations and operational functions from `vickoboy104-hub/belovedcollege_new` while replacing the previous presentation architecture.
 
-## Current foundation
+## Technology foundation
 
 - Laravel 13
 - PHP 8.4 target
@@ -14,15 +14,32 @@ This repository is a new application codebase. It will preserve the approved dat
 - PHPUnit 12
 - GitHub Actions continuous integration
 
-## Planned application surfaces
+## Application surfaces
 
 | Surface | Production host | Purpose |
 |---|---|---|
-| Public website | `belovedcollege.com` | School information, admissions, contact, news, result checker and portal entry |
+| Public website | `belovedcollege.com` | School information, admissions, contact, news, gallery, result checker and portal entry |
 | Full web portal | `web.belovedcollege.com` | Complete desktop-oriented administration, teaching, finance and portal workspaces |
 | Mobile portal | `app.belovedcollege.com` | Mobile-first installable portal using the same Laravel backend and database |
 
 The three surfaces are not separate school systems. They share one authentication system, one authorization model, one database, one file store and one set of domain services.
+
+## Implemented platform areas
+
+- identity, audience-aware authentication and permission boundaries
+- Students, Parents, Staff and reversible archival
+- teacher class-subject access
+- academic sessions, terms, classes, subjects and promotions
+- lessons, assignments, attendance and grading
+- Student and Parent portals
+- reports, report cards and public result checking
+- complete objective and theory CBT workflow
+- fee catalogue, invoices, collections and receipts
+- verified Paystack, Flutterwave and Monnify settlement
+- responsive Classic and Dark interfaces
+- public website, CMS and semantic theme administration on the current release branch
+
+See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md) for the current release-by-release status.
 
 ## Non-negotiable requirements
 
@@ -41,8 +58,12 @@ The three surfaces are not separate school systems. They share one authenticatio
 
 - [`docs/architecture/PLATFORM_ARCHITECTURE.md`](docs/architecture/PLATFORM_ARCHITECTURE.md)
 - [`docs/migration/FUNCTIONAL_PARITY_REGISTER.md`](docs/migration/FUNCTIONAL_PARITY_REGISTER.md)
+- [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md)
 - [`docs/migration/DATA_AND_FILE_PRESERVATION.md`](docs/migration/DATA_AND_FILE_PRESERVATION.md)
 - [`docs/ui/INTERFACE_PRINCIPLES.md`](docs/ui/INTERFACE_PRINCIPLES.md)
+- [`docs/workflows/LEARNING_RESULTS_CBT.md`](docs/workflows/LEARNING_RESULTS_CBT.md)
+- [`docs/workflows/FINANCE_AND_PAYMENTS.md`](docs/workflows/FINANCE_AND_PAYMENTS.md)
+- [`docs/workflows/PUBLIC_CMS_THEME_MANAGER.md`](docs/workflows/PUBLIC_CMS_THEME_MANAGER.md)
 
 ## Local setup
 
@@ -60,10 +81,10 @@ The default local database is SQLite. Production database credentials and secret
 ## Development workflow
 
 - `main` contains reviewed, deployable work.
-- Feature and foundation work is developed on dedicated branches.
+- Feature work is developed on dedicated branches.
 - Pull requests must pass formatting, frontend build and automated tests.
 - Destructive production migrations are prohibited until a verified backup and migration rehearsal exist.
 
 ## Migration status
 
-The project is currently in **Foundation and Parity Mapping**. No production data has been modified or migrated yet.
+The core internal school workflows are implemented and test-backed. The current release completes the public website, CMS and two-theme administration. Production data and uploaded files have not yet been migrated or modified; cutover remains subject to backup, reconciliation, deployment rehearsal and role-based acceptance testing.

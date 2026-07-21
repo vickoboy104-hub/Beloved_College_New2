@@ -6,6 +6,7 @@ use App\Enums\Permission;
 use App\Enums\ThemeMode;
 use App\Enums\UserRole;
 use App\Services\Authorization\PermissionService;
+use App\Services\Website\ThemeService;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -166,10 +167,6 @@ class User extends Authenticatable
 
     public function effectiveTheme(): ThemeMode
     {
-        if (config('platform.allow_user_theme_selection') && $this->preferred_theme instanceof ThemeMode) {
-            return $this->preferred_theme;
-        }
-
-        return ThemeMode::default();
+        return app(ThemeService::class)->effectiveFor($this);
     }
 }

@@ -3,19 +3,22 @@
 namespace Tests\Feature;
 
 use App\Enums\PortalSurface;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PortalSurfaceRoutingTest extends TestCase
 {
-    public function test_public_host_resolves_to_the_public_surface(): void
+    use RefreshDatabase;
+
+    public function test_public_host_resolves_to_the_public_website_surface(): void
     {
         $response = $this->get($this->urlForHost(config('platform.hosts.public')));
 
         $response
             ->assertOk()
-            ->assertViewIs('surfaces.status')
+            ->assertViewIs('public.home')
             ->assertViewHas('portalSurface', PortalSurface::PublicSite)
-            ->assertSee('data-portal-surface="public"', false);
+            ->assertSee('Learning with purpose');
     }
 
     public function test_web_portal_host_resolves_to_the_full_web_surface(): void
