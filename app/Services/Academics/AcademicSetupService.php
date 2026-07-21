@@ -101,12 +101,13 @@ class AcademicSetupService
     {
         $this->authorize($actor, Permission::ManageAcademicStructure);
         $this->assertClassTeacher($data['class_teacher_id'] ?? null);
+        $section = filled($data['section'] ?? null)
+            ? (string) $data['section']
+            : Str::random(4);
 
         return SchoolClass::query()->create([
             ...$data,
-            'slug' => Str::slug(
-                $data['name'].'-'.($data['section'] ?: Str::random(4)),
-            ).'-'.Str::lower(Str::random(4)),
+            'slug' => Str::slug($data['name'].'-'.$section).'-'.Str::lower(Str::random(4)),
         ]);
     }
 
