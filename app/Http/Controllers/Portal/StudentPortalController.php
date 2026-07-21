@@ -11,6 +11,7 @@ use App\Models\Lesson;
 use App\Models\StudentTermReport;
 use App\Services\Learning\AssignmentSubmissionService;
 use App\Services\Portal\PortalStudentResolver;
+use App\Services\Reports\StudentReportService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -73,6 +74,29 @@ class StudentPortalController extends Controller
                 ->get(),
             'invoices' => $student->feeInvoices()->with(['feeItem', 'payments'])->latest('issued_at')->get(),
             'activeSection' => $request->string('section', 'overview')->toString(),
+        ]);
+    }
+
+    public function report(
+        Request $request,
+        StudentTermReport $report,
+        PortalStudentResolver $resolver,
+        StudentReportService $reports,
+    ): View {
+        $student = $resolver->resolve($request->user(), $request->query('student_id'));
+        abort_unless((int) $report->student_id === (int) $student->id, 403);
+        abort_unless($report->portal_enabled && $report->published_at, 404);
+        $report->load([
+            'student.user',
+            'student.schoolClass',
+            'term.academicSession',
+            'approver',
+            'publisher',
+        ]);
+
+        return view('portal.student.report', [
+            'report' => $report,
+            'subjectRows' => $reports->rowsForReport($report),
         ]);
     }
 
