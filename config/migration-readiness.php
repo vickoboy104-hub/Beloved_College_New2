@@ -6,6 +6,7 @@ return [
     'allow_production' => (bool) env('MIGRATION_READINESS_ALLOW_PRODUCTION', false),
     'source_connection' => env('LEGACY_DB_CONNECTION', 'legacy'),
     'target_connection' => env('MIGRATION_TARGET_CONNECTION', env('DB_CONNECTION', 'sqlite')),
+    'expected_app_key_fingerprint' => env('MIGRATION_EXPECTED_APP_KEY_FINGERPRINT'),
 
     'legacy_connection' => [
         'driver' => env('LEGACY_DB_DRIVER', 'mysql'),
