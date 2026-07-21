@@ -33,13 +33,19 @@ LEGACY_DB_DATABASE=beloved_college_legacy_copy
 LEGACY_DB_USERNAME=legacy_read_only
 LEGACY_DB_PASSWORD=
 
+LEGACY_PRIVATE_FILES_ROOT=/srv/staging/legacy/storage/app/private
+LEGACY_PUBLIC_FILES_ROOT=/srv/staging/legacy/storage/app/public
+
 MIGRATION_TARGET_CONNECTION=mysql
 MIGRATION_REPORT_DISK=local
 MIGRATION_REPORT_DIRECTORY=migration-reports
 MIGRATION_READINESS_ALLOW_PRODUCTION=false
+APP_COMMIT_SHA=<exact-deployed-commit>
 ```
 
 Do not commit real credentials.
+
+The `legacy_private` and `legacy_public` disks are isolated from New2's `local` and `public` disks. This lets the rehearsal compare source and target file bytes without overwriting either copy.
 
 ## APP_KEY continuity
 
@@ -159,6 +165,82 @@ Checks include:
 
 The console summary is accompanied by a complete JSON report.
 
+## Packaged staging rehearsal
+
+Run the complete technical rehearsal and create the first acceptance template:
+
+```bash
+php artisan deployment:rehearse rehearsal-2026-07-01 \
+  --source=legacy \
+  --target=mysql \
+  --source-snapshot=legacy-backup-20260721T220000Z \
+  --operator="Named Migration Operator" \
+  --commit="$APP_COMMIT_SHA" \
+  --source-disk=legacy_private \
+  --source-disk=legacy_public \
+  --target-disk=local \
+  --target-disk=public \
+  --strict
+```
+
+The evidence package contains:
+
+- consolidated technical report
+- human-readable Markdown summary
+- role and owner acceptance JSON
+- evidence manifest with SHA-256 and byte size for every package file
+
+The first run normally reports:
+
+```text
+Technical checks: PASS
+Role and owner acceptance: PENDING
+Cutover eligible: NO
+```
+
+Complete the generated `acceptance-evidence.json`. Every required role needs:
+
+- status `pass`
+- named tester
+- test timestamp
+- one or more evidence references
+
+Every required owner needs:
+
+- status `approved`
+- named approver
+- approval timestamp
+
+Run the final package using the completed evidence path on the report disk:
+
+```bash
+php artisan deployment:rehearse rehearsal-2026-07-01 \
+  --source=legacy \
+  --target=mysql \
+  --source-snapshot=legacy-backup-20260721T220000Z \
+  --operator="Named Migration Operator" \
+  --commit="$APP_COMMIT_SHA" \
+  --source-disk=legacy_private \
+  --source-disk=legacy_public \
+  --target-disk=local \
+  --target-disk=public \
+  --acceptance=migration-reports/rehearsals/rehearsal-2026-07-01/<run>/acceptance-evidence.json \
+  --strict \
+  --require-acceptance
+```
+
+The command refuses cutover eligibility when any of the following exists:
+
+- row or finance mismatch
+- source or target invoice equation error
+- source or target file problem
+- file checksum or byte-size mismatch
+- incomplete file scan
+- critical or warning preflight under strict mode
+- failed role acceptance
+- missing tester evidence
+- rejected or incomplete owner approval
+
 ## Report storage
 
 Default report location:
@@ -176,6 +258,12 @@ Each report contains:
 - Laravel version
 - command-specific findings
 
+Rehearsal packages are versioned under:
+
+```text
+storage/app/private/migration-reports/rehearsals/<rehearsal-id>/<timestamp-random>/
+```
+
 Reports may contain table names, record identifiers, stored paths, counts and financial totals. Treat them as confidential operational documents.
 
 ## Approval criteria
@@ -185,12 +273,14 @@ A staging rehearsal is eligible for cutover approval only when:
 1. source and target reconciliation returns `pass`
 2. invoice equation mismatches equal zero
 3. all required file references are found and checksummed
-4. no unsafe file paths exist
-5. deployment preflight has no critical finding
-6. queue and scheduler are observed running
-7. role-based acceptance tests pass
-8. backup and rollback rehearsal evidence exists
-9. the approved original APP_KEY fingerprint matches
-10. the final change window is approved
+4. source and target checksums and byte sizes match
+5. no unsafe file paths exist
+6. deployment preflight returns `pass`
+7. queue and scheduler are observed running
+8. all required role acceptance tests pass with evidence
+9. all required owners approve
+10. backup and rollback rehearsal evidence exists
+11. the approved original APP_KEY fingerprint matches
+12. the final change window is approved
 
 No command in this release performs the production data transfer. Import/copy execution remains a separately reviewed operation.
