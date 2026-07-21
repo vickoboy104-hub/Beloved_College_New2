@@ -116,7 +116,7 @@ class AcademicSetupService
     public function updateClass(User $actor, SchoolClass $class, array $data): SchoolClass
     {
         $this->authorize($actor, Permission::ManageAcademicStructure);
-        $this->assertClassTeacher($data['class_teacher_id'] ?? null);
+        $this->assertClassTeacher($data['class_teacher_id'] ?? null, $class);
         $class->update($data);
 
         return $class->fresh(['classTeacher']);
@@ -132,7 +132,7 @@ class AcademicSetupService
         return Subject::query()->create($data);
     }
 
-    private function assertClassTeacher(mixed $teacherId): void
+    private function assertClassTeacher(mixed $teacherId, ?SchoolClass $except = null): void
     {
         if (! $teacherId) {
             return;
@@ -146,7 +146,13 @@ class AcademicSetupService
             ]);
         }
 
-        if (SchoolClass::query()->where('class_teacher_id', $teacher->id)->exists()) {
+        $query = SchoolClass::query()->where('class_teacher_id', $teacher->id);
+
+        if ($except) {
+            $query->whereKeyNot($except->getKey());
+        }
+
+        if ($query->exists()) {
             throw ValidationException::withMessages([
                 'class_teacher_id' => 'This teacher is already assigned as the class teacher of another class.',
             ]);
