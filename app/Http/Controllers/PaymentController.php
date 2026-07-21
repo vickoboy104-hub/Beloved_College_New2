@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Enums\PaymentProvider;
 use App\Enums\PaymentStatus;
+use App\Enums\UserRole;
 use App\Models\FeeInvoice;
 use App\Models\Payment;
 use App\Services\Payments\PaymentAccessService;
 use App\Services\Payments\PaymentCheckoutService;
+use App\Services\Payments\PaymentGatewayManager;
+use App\Services\Portal\PortalStudentResolver;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,6 +18,34 @@ use Throwable;
 
 class PaymentController extends Controller
 {
+    public function index(
+        Request $request,
+        PortalStudentResolver $resolver,
+        PaymentGatewayManager $gateways,
+    ): View {
+        $student = $resolver->resolve($request->user(), $request->query('student_id'));
+        $student->loadMissing('user', 'schoolClass');
+
+        return view('payments.portal', [
+            'student' => $student,
+            'children' => $request->user()->hasAnyRole(UserRole::Parent)
+                ? $request->user()->children()->with(['user', 'schoolClass'])->whereNull('archived_at')->get()
+                : collect([$student]),
+            'invoices' => $student->feeInvoices()
+                ->with(['feeItem.term.academicSession', 'payments'])
+                ->latest('issued_at')
+                ->get(),
+            'payments' => $student->payments()
+                ->with('feeInvoice.feeItem')
+                ->where('status', PaymentStatus::Paid->value)
+                ->latest('paid_at')
+                ->get()
+                ->reject(fn (Payment $payment) => data_get($payment->payload, 'source') === 'bundle_allocation')
+                ->values(),
+            'gateways' => $gateways->catalog(onlyAvailable: true),
+        ]);
+    }
+
     public function checkout(
         Request $request,
         FeeInvoice $invoice,
