@@ -1,58 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Beloved College School Management Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-first rebuild of the Beloved College public website and school management system.
 
-## About Laravel
+This repository is a new application codebase. It will preserve the approved database records, uploaded files, business rules, calculations, and operational functions from `vickoboy104-hub/belovedcollege_new` while replacing the previous presentation architecture.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Current foundation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel 13
+- PHP 8.4 target
+- Livewire 4
+- Tailwind CSS 4
+- Vite 8
+- PHPUnit 12
+- GitHub Actions continuous integration
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Planned application surfaces
 
-## Learning Laravel
+| Surface | Production host | Purpose |
+|---|---|---|
+| Public website | `belovedcollege.com` | School information, admissions, contact, news, result checker and portal entry |
+| Full web portal | `web.belovedcollege.com` | Complete desktop-oriented administration, teaching, finance and portal workspaces |
+| Mobile portal | `app.belovedcollege.com` | Mobile-first installable portal using the same Laravel backend and database |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The three surfaces are not separate school systems. They share one authentication system, one authorization model, one database, one file store and one set of domain services.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Non-negotiable requirements
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1. **Functional parity before replacement** — no approved legacy function may disappear silently.
+2. **Existing data preservation** — production records are never used as an experimental migration target.
+3. **Uploaded-file preservation** — legacy storage paths are inventoried and mapped before cutover.
+4. **Laravel ownership of business logic** — controllers remain thin; domain operations live in actions and services.
+5. **Policy-based authorization** — interface visibility never replaces server-side authorization.
+6. **Exactly two visual themes** — Classic and Dark.
+7. **Flat interface hierarchy** — avoid nested cards and cascading boxes; use direct tables, lists, forms, tabs and drawers.
+8. **Mobile-first behavior** — every workflow must remain usable on a phone even when the full web portal is selected.
+9. **Test-backed migration** — parity tests are required before each legacy module is retired.
+10. **Reversible deployment** — backups, reconciliation and rollback are required before production cutover.
 
-## Agentic Development
+## Documentation
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- [`docs/architecture/PLATFORM_ARCHITECTURE.md`](docs/architecture/PLATFORM_ARCHITECTURE.md)
+- [`docs/migration/FUNCTIONAL_PARITY_REGISTER.md`](docs/migration/FUNCTIONAL_PARITY_REGISTER.md)
+- [`docs/migration/DATA_AND_FILE_PRESERVATION.md`](docs/migration/DATA_AND_FILE_PRESERVATION.md)
+- [`docs/ui/INTERFACE_PRINCIPLES.md`](docs/ui/INTERFACE_PRINCIPLES.md)
+
+## Local setup
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+cp .env.example .env
+composer install
+php artisan key:generate
+npm install
+npm run build
+php artisan test
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The default local database is SQLite. Production database credentials and secrets must remain outside source control.
 
-## Contributing
+## Development workflow
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- `main` contains reviewed, deployable work.
+- Feature and foundation work is developed on dedicated branches.
+- Pull requests must pass formatting, frontend build and automated tests.
+- Destructive production migrations are prohibited until a verified backup and migration rehearsal exist.
 
-## Code of Conduct
+## Migration status
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project is currently in **Foundation and Parity Mapping**. No production data has been modified or migrated yet.
