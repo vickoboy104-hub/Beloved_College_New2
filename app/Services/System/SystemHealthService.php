@@ -2,7 +2,9 @@
 
 namespace App\Services\System;
 
+use App\Models\Setting;
 use App\Models\SystemHeartbeat;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -110,11 +112,14 @@ class SystemHealthService
             ];
         }
 
+        $warningMinutes = (int) Setting::getValue('queue_warning_minutes', 15);
         $pending = DB::table('jobs')->count();
         $failed = DB::table('failed_jobs')->count();
         $oldest = DB::table('jobs')->min('created_at');
-        $oldestAgeMinutes = $oldest ? now()->diffInMinutes(now()->setTimestamp((int) $oldest)) : 0;
-        $status = $failed > 0 || $oldestAgeMinutes > 15
+        $oldestAgeMinutes = $oldest
+            ? Carbon::createFromTimestamp((int) $oldest)->diffInMinutes(now())
+            : 0;
+        $status = $failed > 0 || $oldestAgeMinutes > $warningMinutes
             ? 'warning'
             : 'healthy';
 
@@ -123,10 +128,11 @@ class SystemHealthService
             'label' => 'Queue',
             'message' => $status === 'healthy'
                 ? 'No failed jobs or stale queued work detected.'
-                : 'Review failed jobs or a queue item waiting longer than 15 minutes.',
+                : 'Review failed jobs or a queue item waiting longer than '.$warningMinutes.' minutes.',
             'pending' => $pending,
             'failed' => $failed,
             'oldest_age_minutes' => $oldestAgeMinutes,
+            'warning_minutes' => $warningMinutes,
             'connection' => config('queue.default'),
         ];
     }
@@ -145,6 +151,7 @@ class SystemHealthService
             ];
         }
 
+        $warningMinutes = (int) Setting::getValue('scheduler_warning_minutes', 5);
         $heartbeat = SystemHeartbeat::query()->where('service', 'scheduler')->first();
 
         if (! $heartbeat?->last_seen_at) {
@@ -153,19 +160,21 @@ class SystemHealthService
                 'label' => 'Scheduler',
                 'message' => 'No scheduler heartbeat has been recorded yet.',
                 'last_seen_at' => null,
+                'warning_minutes' => $warningMinutes,
             ];
         }
 
         $ageMinutes = $heartbeat->last_seen_at->diffInMinutes(now());
 
         return [
-            'status' => $ageMinutes <= 5 ? 'healthy' : 'critical',
+            'status' => $ageMinutes <= $warningMinutes ? 'healthy' : 'critical',
             'label' => 'Scheduler',
-            'message' => $ageMinutes <= 5
+            'message' => $ageMinutes <= $warningMinutes
                 ? 'The scheduler heartbeat is current.'
                 : 'The scheduler heartbeat is stale. Confirm cron is running every minute.',
             'last_seen_at' => $heartbeat->last_seen_at,
             'age_minutes' => $ageMinutes,
+            'warning_minutes' => $warningMinutes,
         ];
     }
 
