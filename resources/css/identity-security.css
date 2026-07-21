@@ -25,7 +25,8 @@
     padding-top: 1rem;
 }
 
-.security-status-strip {
+.security-status-strip,
+.identity-admin-stat-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: 1.5rem;
@@ -33,31 +34,44 @@
     border-bottom: 1px solid var(--border);
 }
 
-.security-status-strip article {
+.identity-admin-stat-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.security-status-strip article,
+.identity-admin-stat-grid article {
     display: grid;
     gap: 0.3rem;
     min-width: 0;
     padding: 1rem;
 }
 
-.security-status-strip article + article {
+.security-status-strip article + article,
+.identity-admin-stat-grid article + article {
     border-left: 1px solid var(--border);
 }
 
 .security-status-strip span,
-.security-status-strip small {
+.security-status-strip small,
+.identity-admin-stat-grid span {
     color: var(--text-muted);
     font-size: 0.72rem;
 }
 
-.security-status-strip span {
+.security-status-strip span,
+.identity-admin-stat-grid span {
     font-weight: 800;
     text-transform: uppercase;
 }
 
-.security-status-strip strong {
+.security-status-strip strong,
+.identity-admin-stat-grid strong {
     overflow-wrap: anywhere;
     font-size: 1rem;
+}
+
+.identity-admin-stat-grid strong {
+    font-size: 1.7rem;
 }
 
 .security-workspace-grid {
@@ -148,6 +162,22 @@
     font-size: 0.72rem;
 }
 
+@media (max-width: 1180px) {
+    .identity-admin-stat-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .identity-admin-stat-grid article:nth-child(4) {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .identity-admin-stat-grid article:nth-child(5),
+    .identity-admin-stat-grid article:nth-child(6) {
+        border-top: 1px solid var(--border);
+    }
+}
+
 @media (max-width: 1024px) {
     .security-status-strip,
     .security-workspace-grid {
@@ -178,12 +208,15 @@
 
     .security-status-strip,
     .security-workspace-grid,
-    .security-revoke-all-form {
+    .security-revoke-all-form,
+    .identity-admin-stat-grid {
         grid-template-columns: 1fr;
     }
 
     .security-status-strip article + article,
-    .security-status-strip article:nth-child(3) {
+    .security-status-strip article:nth-child(3),
+    .identity-admin-stat-grid article + article,
+    .identity-admin-stat-grid article:nth-child(4) {
         border-left: 0;
         border-top: 1px solid var(--border);
     }
