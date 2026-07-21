@@ -1,0 +1,97 @@
+.surface-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 85% 12%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 24rem),
+        radial-gradient(circle at 12% 88%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 28rem),
+        var(--page);
+}
+
+.surface-main {
+    width: min(100% - 2rem, 70rem);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: clamp(4rem, 10vw, 8rem) 0;
+}
+
+.surface-main h1 {
+    max-width: 54rem;
+    margin: 0.75rem 0 0;
+    font-size: clamp(2.8rem, 8vw, 6.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.065em;
+}
+
+.surface-summary {
+    max-width: 44rem;
+    margin: 1.75rem 0 0;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.75;
+}
+
+.surface-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+}
+
+.primary-link,
+.secondary-link {
+    display: inline-flex;
+    min-height: 3.1rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85rem;
+    padding: 0.75rem 1rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.primary-link {
+    background: var(--primary);
+    color: #fff;
+}
+
+.secondary-link {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.surface-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: clamp(4rem, 10vw, 8rem) 0 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+}
+
+.surface-facts div {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.surface-facts dt {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.surface-facts dd {
+    margin: 0;
+    font-weight: 750;
+}
+
+@media (max-width: 640px) {
+    .surface-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .surface-actions a {
+        width: 100%;
+    }
+}
