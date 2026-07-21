@@ -5,4 +5,5 @@ import '../css/finance-workspaces.css';
 import '../css/public-cms.css';
 import '../css/public-cms-components.css';
 import '../css/communication-system.css';
+import '../css/communication-system-components.css';
 import './theme-manager.js';
