@@ -1,0 +1,701 @@
+.control-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1rem 0;
+}
+
+.control-strip > div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.control-strip span,
+.form-help {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.55;
+}
+
+.learning-record-row,
+.cbt-record-row {
+    grid-template-columns: minmax(14rem, 2fr) repeat(3, minmax(8rem, 1fr)) minmax(8rem, 0.7fr);
+}
+
+.compact-fieldset {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 0.9rem;
+}
+
+.compact-fieldset legend {
+    padding: 0 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+}
+
+.attendance-form {
+    padding: 1rem 0 1.3rem;
+}
+
+.attendance-date {
+    width: min(100%, 16rem);
+    margin-bottom: 1rem;
+}
+
+.submission-review,
+.question-editor,
+.assignment-detail,
+.lesson-body {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem 0 1.25rem;
+}
+
+.submitted-text,
+.submitted-work-summary,
+.exam-instructions {
+    border-left: 3px solid var(--primary);
+    background: var(--surface-muted);
+    padding: 0.9rem 1rem;
+}
+
+.submitted-text h3,
+.exam-instructions h2,
+.report-summary-grid h3,
+.report-remarks h3 {
+    margin: 0 0 0.45rem;
+    font-size: 0.92rem;
+}
+
+.submitted-text p,
+.submitted-work-summary p,
+.exam-instructions p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.sample-answer {
+    border-left-color: var(--accent);
+}
+
+.file-link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.form-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.option-editor-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem 1rem;
+    align-items: end;
+}
+
+.compact-long-form {
+    padding-top: 0;
+}
+
+.delete-row {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border);
+    padding-top: 0.7rem;
+}
+
+.child-switcher {
+    min-width: min(100%, 18rem);
+}
+
+.portal-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.portal-overview-block {
+    min-width: 0;
+}
+
+.portal-overview-block h2 {
+    margin: 0.35rem 0 0;
+}
+
+.compact-record-row {
+    grid-template-columns: minmax(0, 1fr) minmax(8rem, auto);
+}
+
+.lead-copy {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+.prose-copy {
+    color: var(--text);
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.inline-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+}
+
+.inline-facts div {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.inline-facts dt {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.inline-facts dd {
+    margin: 0;
+    font-weight: 750;
+}
+
+.submission-form {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.exam-status-bar {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+    background: var(--border);
+    box-shadow: var(--shadow);
+}
+
+.exam-status-bar > div {
+    display: grid;
+    gap: 0.3rem;
+    background: var(--surface);
+    padding: 0.85rem;
+}
+
+.exam-status-bar span {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.exam-instructions {
+    margin-top: 1.25rem;
+}
+
+.cbt-exam-form {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.3rem;
+}
+
+.exam-question {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    padding: 1rem;
+}
+
+.exam-question legend {
+    display: flex;
+    width: calc(100% - 0.5rem);
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 0.25rem;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.question-prompt {
+    margin: 0.5rem 0 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.75;
+}
+
+.exam-media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.exam-media-grid img {
+    width: 100%;
+    max-height: 24rem;
+    border-radius: 0.75rem;
+    object-fit: contain;
+    background: var(--surface-muted);
+}
+
+.answer-options {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.answer-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.answer-option:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+}
+
+.answer-option input {
+    margin-top: 0.18rem;
+}
+
+.exam-submit-bar {
+    position: sticky;
+    bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
+    padding: 0.85rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+}
+
+.exam-submit-bar p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.cbt-answer-row {
+    grid-template-columns: minmax(14rem, 2fr) repeat(3, minmax(8rem, 1fr));
+}
+
+.report-card {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.report-card-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
+    gap: 2rem;
+    align-items: start;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 1rem;
+}
+
+.report-card-header h2 {
+    margin: 0.25rem 0;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+.report-card-header p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.report-student-facts,
+.report-summary-grid dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.report-student-facts div,
+.report-summary-grid dl div {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.report-student-facts dt,
+.report-summary-grid dt {
+    color: var(--text-muted);
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.report-student-facts dd,
+.report-summary-grid dd {
+    margin: 0;
+    font-weight: 750;
+}
+
+.report-table-wrap {
+    margin-top: 1.25rem;
+}
+
+.report-table tfoot th {
+    background: var(--surface-muted);
+}
+
+.report-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.report-summary-grid > * {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.trait-list {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.report-remarks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.report-remarks article {
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+}
+
+.report-remarks p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.report-card-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 2px solid var(--text);
+    padding-top: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.publication-panel {
+    border-top-color: var(--primary);
+}
+
+.print-report-page,
+.public-result-page {
+    min-height: 100vh;
+    background: #eef1f5;
+    color: #172033;
+}
+
+.print-toolbar,
+.public-result-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    width: min(100% - 2rem, 75rem);
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.print-toolbar button {
+    border: 0;
+    border-radius: 0.7rem;
+    background: #2356d8;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.print-report-sheet,
+.public-result-sheet {
+    width: min(100% - 2rem, 75rem);
+    margin: 0 auto 2rem;
+}
+
+.print-report-sheet .report-card,
+.public-result-sheet .report-card {
+    margin-top: 0;
+    border-color: #d5dbe5;
+    background: #fff;
+    color: #172033;
+}
+
+.print-report-sheet .data-table,
+.public-result-sheet .data-table {
+    color: #172033;
+}
+
+.print-report-sheet .data-table th,
+.public-result-sheet .data-table th,
+.print-report-sheet .report-table tfoot th,
+.public-result-sheet .report-table tfoot th {
+    background: #f3f5f8;
+    color: #4d596e;
+}
+
+.public-checker-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(35, 86, 216, 0.18), transparent 24rem),
+        #eef1f5;
+    color: #172033;
+}
+
+.public-checker-shell {
+    width: min(100% - 2rem, 38rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 8vw, 6rem) 0;
+}
+
+.public-checker-header {
+    display: grid;
+    gap: 1rem;
+}
+
+.public-checker-header h1 {
+    margin: 0;
+    font-size: clamp(2.3rem, 8vw, 4.7rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.public-checker-header > p:last-child,
+.public-checker-help {
+    color: #5f697c;
+    line-height: 1.7;
+}
+
+.public-checker-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 3px solid #2356d8;
+    border-bottom: 1px solid #d5dbe5;
+    background: #fff;
+    padding: 1.25rem 0;
+}
+
+.public-checker-form .field-group span {
+    color: #4d596e;
+}
+
+.public-checker-form input,
+.public-checker-form select {
+    border-color: #d5dbe5;
+    background: #fff;
+    color: #172033;
+}
+
+.public-checker-help {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 1080px) {
+    .form-grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .report-card-header,
+    .report-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 860px) {
+    .learning-record-row,
+    .cbt-record-row,
+    .cbt-answer-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .portal-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-status-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        top: 3.8rem;
+    }
+
+    .report-remarks {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .control-strip,
+    .exam-submit-bar,
+    .report-card-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .learning-record-row,
+    .cbt-record-row,
+    .cbt-answer-row,
+    .compact-record-row,
+    .form-grid-4,
+    .report-student-facts,
+    .report-summary-grid dl,
+    .exam-status-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .option-editor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-status-bar {
+        position: static;
+    }
+
+    .exam-submit-bar {
+        bottom: 4.8rem;
+    }
+
+    .report-card {
+        border-right: 0;
+        border-left: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media print {
+    .portal-sidebar,
+    .portal-topbar,
+    .portal-mobile-nav,
+    .page-heading,
+    .identity-strip,
+    .anchor-navigation,
+    .notice,
+    .print-toolbar,
+    .public-result-toolbar {
+        display: none !important;
+    }
+
+    .portal-shell,
+    .portal-workspace,
+    .portal-main,
+    .print-report-sheet,
+    .public-result-sheet {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .print-report-page,
+    .public-result-page,
+    .portal-page,
+    .report-card {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .report-card {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .report-table-wrap {
+        overflow: visible;
+    }
+
+    .report-table {
+        display: table !important;
+        font-size: 8pt;
+    }
+
+    .report-table thead {
+        position: static !important;
+        display: table-header-group !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        clip: auto !important;
+    }
+
+    .report-table tbody {
+        display: table-row-group !important;
+    }
+
+    .report-table tfoot {
+        display: table-footer-group !important;
+    }
+
+    .report-table tr {
+        display: table-row !important;
+        border: 0 !important;
+        padding: 0 !important;
+    }
+
+    .report-table th,
+    .report-table td {
+        display: table-cell !important;
+        width: auto !important;
+        border: 1px solid #888 !important;
+        padding: 4px !important;
+    }
+
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+}
