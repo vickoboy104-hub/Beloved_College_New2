@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+use App\Models\AnnouncementDelivery;
 use App\Models\SchoolClass;
 use App\Models\Setting;
 use App\Models\User;
 use App\Services\Communication\CommunicationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -43,8 +45,8 @@ class CommunicationController extends Controller
                 'drafts' => Announcement::query()->where('status', 'draft')->count(),
                 'scheduled' => Announcement::query()->where('status', 'scheduled')->count(),
                 'dispatched' => Announcement::query()->where('status', 'dispatched')->count(),
-                'deliveries' => \App\Models\AnnouncementDelivery::query()->count(),
-                'unread' => \Illuminate\Notifications\DatabaseNotification::query()->whereNull('read_at')->count(),
+                'deliveries' => AnnouncementDelivery::query()->count(),
+                'unread' => DatabaseNotification::query()->whereNull('read_at')->count(),
             ],
         ]);
     }
