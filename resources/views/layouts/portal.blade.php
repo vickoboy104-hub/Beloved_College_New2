@@ -3,12 +3,33 @@
     $theme = auth()->user()->effectiveTheme();
     $surfacePrefix = $surface === \App\Enums\PortalSurface::AppPortal ? 'app' : 'web';
     $user = auth()->user();
+    $isTeacherWorkspaceUser = $user->hasAnyRole('super_admin', 'admin', 'principal', 'teacher');
+    $isStudentPortalUser = $user->hasAnyRole('student', 'parent');
+    $isReportAdministrator = $surfacePrefix === 'web' && $user->hasAnyRole('super_admin', 'admin', 'principal');
     $navItems = [
         [
             'label' => 'Dashboard',
             'route' => $surfacePrefix.'.dashboard',
             'active' => $surfacePrefix.'.dashboard',
             'visible' => true,
+        ],
+        [
+            'label' => 'My Portal',
+            'route' => $surfacePrefix.'.portal.index',
+            'active' => $surfacePrefix.'.portal.*',
+            'visible' => $isStudentPortalUser,
+        ],
+        [
+            'label' => 'Teaching',
+            'route' => $surfacePrefix.'.teacher.learning.index',
+            'active' => $surfacePrefix.'.teacher.learning.*',
+            'visible' => $isTeacherWorkspaceUser,
+        ],
+        [
+            'label' => 'CBT',
+            'route' => $surfacePrefix.'.teacher.cbt.index',
+            'active' => $surfacePrefix.'.teacher.cbt.*',
+            'visible' => $isTeacherWorkspaceUser,
         ],
         [
             'label' => 'Students',
@@ -27,6 +48,12 @@
             'route' => 'web.admin.academics.index',
             'active' => 'web.admin.academics.*',
             'visible' => $surfacePrefix === 'web' && $user->hasPermission('academics.manage_structure'),
+        ],
+        [
+            'label' => 'Reports',
+            'route' => 'web.admin.reports.index',
+            'active' => 'web.admin.reports.*',
+            'visible' => $isReportAdministrator,
         ],
         [
             'label' => 'Teacher Access',
@@ -118,6 +145,25 @@
                                         <code>{{ $credential['temporary_password'] }}</code>
                                     </article>
                                 @endforeach
+                            </div>
+                        </section>
+                    @endif
+
+                    @if (session('generated_result_pin'))
+                        @php $resultPin = session('generated_result_pin'); @endphp
+                        <section class="credential-notice result-pin-notice" aria-labelledby="result-pin-heading">
+                            <div>
+                                <p class="eyebrow">Display once</p>
+                                <h2 id="result-pin-heading">Public result-checker PIN</h2>
+                                <p>Copy this PIN now. Only its secure hash is retained after this page.</p>
+                            </div>
+                            <div class="credential-list">
+                                <article>
+                                    <strong>{{ $resultPin['student'] }}</strong>
+                                    <span>{{ $resultPin['term'] }}</span>
+                                    <code>{{ $resultPin['admission_no'] }}</code>
+                                    <code>{{ $resultPin['pin'] }}</code>
+                                </article>
                             </div>
                         </section>
                     @endif
