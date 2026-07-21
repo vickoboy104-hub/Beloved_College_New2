@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
+use App\Models\SecurityEvent;
 use App\Models\Setting;
 use App\Models\SystemHeartbeat;
 use App\Models\User;
@@ -26,7 +27,7 @@ class SystemAdministrationController extends Controller
         SystemHealthService $health,
         MailConfigurationService $mail,
     ): View {
-        $sections = ['health', 'audit', 'jobs', 'mail', 'settings'];
+        $sections = ['health', 'audit', 'jobs', 'mail', 'identity', 'settings'];
         $activeSection = in_array($request->query('section'), $sections, true)
             ? $request->query('section')
             : 'health';
@@ -70,6 +71,19 @@ class SystemAdministrationController extends Controller
             'heartbeats' => SystemHeartbeat::query()->orderBy('service')->get(),
             'mailStatus' => $mail->status(),
             'settings' => Setting::forAdminForm(),
+            'securityEvents' => SecurityEvent::query()
+                ->with('user')
+                ->latest('occurred_at')
+                ->paginate(50, ['*'], 'security_page')
+                ->withQueryString(),
+            'identityStats' => [
+                'users' => User::query()->count(),
+                'with_email' => User::query()->whereNotNull('email')->count(),
+                'verified' => User::query()->whereNotNull('email_verified_at')->count(),
+                'unverified' => User::query()->whereNotNull('email')->whereNull('email_verified_at')->count(),
+                'without_email' => User::query()->whereNull('email')->count(),
+                'active_sessions' => DB::table('sessions')->whereNotNull('user_id')->count(),
+            ],
         ]);
     }
 
@@ -133,6 +147,22 @@ class SystemAdministrationController extends Controller
         abort_unless($deleted > 0, 404);
 
         return back()->with('status', 'Failed job record deleted.');
+    }
+
+    public function updateIdentitySettings(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'email_verification_required' => ['nullable', 'boolean'],
+            'security_email_alerts_enabled' => ['nullable', 'boolean'],
+            'security_login_alerts_enabled' => ['nullable', 'boolean'],
+        ]);
+        Setting::setMany([
+            'email_verification_required' => $request->boolean('email_verification_required') ? '1' : '0',
+            'security_email_alerts_enabled' => $request->boolean('security_email_alerts_enabled') ? '1' : '0',
+            'security_login_alerts_enabled' => $request->boolean('security_login_alerts_enabled') ? '1' : '0',
+        ], 'identity');
+
+        return back()->with('status', 'Identity security policy updated.');
     }
 
     public function updateSettings(Request $request): RedirectResponse

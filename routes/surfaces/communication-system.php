@@ -28,6 +28,7 @@ Route::middleware(['auth', 'active', 'password.changed', 'last.seen'])
                 Route::post('/mail/test', [SystemAdministrationController::class, 'testMail'])->name('mail.test');
                 Route::post('/failed-jobs/{uuid}/retry', [SystemAdministrationController::class, 'retryFailedJob'])->name('failed-jobs.retry');
                 Route::delete('/failed-jobs/{uuid}', [SystemAdministrationController::class, 'destroyFailedJob'])->name('failed-jobs.destroy');
+                Route::put('/identity', [SystemAdministrationController::class, 'updateIdentitySettings'])->name('identity.update');
                 Route::put('/settings', [SystemAdministrationController::class, 'updateSettings'])->name('settings.update');
             });
     });

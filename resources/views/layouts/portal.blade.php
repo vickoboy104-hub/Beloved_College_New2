@@ -29,6 +29,12 @@
             'visible' => true,
         ],
         [
+            'label' => 'Security',
+            'route' => $surfacePrefix.'.security.index',
+            'active' => $surfacePrefix.'.security.*',
+            'visible' => true,
+        ],
+        [
             'label' => 'My Portal',
             'route' => $surfacePrefix.'.portal.index',
             'active' => $surfacePrefix.'.portal.*',

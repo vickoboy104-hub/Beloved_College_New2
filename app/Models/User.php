@@ -5,9 +5,13 @@ namespace App\Models;
 use App\Enums\Permission;
 use App\Enums\ThemeMode;
 use App\Enums\UserRole;
+use App\Notifications\PasswordResetLinkNotification;
+use App\Notifications\VerifyEmailAddressNotification;
 use App\Services\Authorization\PermissionService;
 use App\Services\Website\ThemeService;
 use Database\Factories\UserFactory;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,6 +34,9 @@ use Illuminate\Notifications\Notifiable;
     'avatar_path',
     'email_verified_at',
     'last_seen_at',
+    'last_login_at',
+    'last_login_ip',
+    'password_changed_at',
     'must_change_password',
     'preferred_theme',
     'archived_at',
@@ -37,16 +44,18 @@ use Illuminate\Notifications\Notifiable;
     'archive_reason',
 ])]
 #[Hidden(['password', 'remember_token', 'avatar_path'])]
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmailContract
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, MustVerifyEmail, Notifiable;
 
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'last_seen_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'password_changed_at' => 'datetime',
             'archived_at' => 'datetime',
             'password' => 'hashed',
             'role' => UserRole::class,
@@ -115,6 +124,11 @@ class User extends Authenticatable
         return $this->hasMany(AuditLog::class);
     }
 
+    public function securityEvents(): HasMany
+    {
+        return $this->hasMany(SecurityEvent::class);
+    }
+
     public function permissionOverrides(): HasMany
     {
         return $this->hasMany(UserPermissionOverride::class);
@@ -178,5 +192,31 @@ class User extends Authenticatable
     public function effectiveTheme(): ThemeMode
     {
         return app(ThemeService::class)->effectiveFor($this);
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new PasswordResetLinkNotification(
+            (string) $token,
+            $this->currentSurfacePrefix(),
+        ));
+    }
+
+    public function sendEmailVerificationNotification(): void
+    {
+        if (blank($this->email)) {
+            return;
+        }
+
+        $this->notify(new VerifyEmailAddressNotification($this->currentSurfacePrefix()));
+    }
+
+    private function currentSurfacePrefix(): string
+    {
+        if (app()->bound('request')) {
+            return request()->getHost() === config('platform.hosts.app') ? 'app' : 'web';
+        }
+
+        return 'web';
     }
 }

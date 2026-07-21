@@ -6,4 +6,5 @@ import '../css/public-cms.css';
 import '../css/public-cms-components.css';
 import '../css/communication-system.css';
 import '../css/communication-system-components.css';
+import '../css/identity-security.css';
 import './theme-manager.js';
