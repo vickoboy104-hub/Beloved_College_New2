@@ -130,11 +130,11 @@ class MigrationReadinessCommandTest extends TestCase
         $report = json_decode(Storage::disk('local')->get('tests/preflight-key-mismatch.json'), true, flags: JSON_THROW_ON_ERROR);
         $keyCheck = collect($report['checks'])->firstWhere('name', 'app_key');
         $this->assertSame('critical', $keyCheck['status']);
-        $this->assertFalse($keyCheck['details']['expected_fingerprint_configured'] === false);
+        $this->assertTrue($keyCheck['details']['expected_fingerprint_configured']);
     }
 
     public function test_untrusted_host_is_rejected(): void
     {
-        $this->get('http://untrusted.example/dashboard')->assertStatus(400);
+        $this->get('http://untrusted.example/')->assertStatus(400);
     }
 }
