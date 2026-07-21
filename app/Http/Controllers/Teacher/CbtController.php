@@ -76,9 +76,12 @@ class CbtController extends Controller
             'cbt_is_active' => $request->boolean('cbt_is_active'),
             'cbt_show_results' => $request->boolean('cbt_show_results'),
         ]);
+        $routeName = $request->routeIs('app.*')
+            ? 'app.teacher.cbt.show'
+            : 'web.teacher.cbt.show';
 
         return redirect()
-            ->route('web.teacher.cbt.show', $assessment)
+            ->route($routeName, $assessment)
             ->with('status', 'CBT created successfully. Add questions before activation.');
     }
 
