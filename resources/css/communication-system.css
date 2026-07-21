@@ -1,0 +1,397 @@
+.notification-inbox-list,
+.communication-history-list,
+.failed-job-list,
+.health-check-list,
+.communication-overview-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border);
+}
+
+.notification-row {
+    display: grid;
+    grid-template-columns: 0.35rem minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.notification-row-marker {
+    align-self: stretch;
+    border-radius: 999px;
+    background: var(--border);
+}
+
+.notification-row.is-unread .notification-row-marker {
+    background: var(--primary);
+}
+
+.notification-row.priority-high .notification-row-marker,
+.notification-row.priority-urgent .notification-row-marker {
+    background: var(--danger);
+}
+
+.notification-row-content {
+    min-width: 0;
+}
+
+.notification-row-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.notification-row h2 {
+    margin: 0.4rem 0 0;
+    font-size: 1.15rem;
+}
+
+.notification-row p {
+    margin: 0.45rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.notification-row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.45rem;
+}
+
+.communication-overview-list article {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding: 1.15rem 0;
+}
+
+.communication-overview-list article > span {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.communication-overview-list h2 {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.communication-overview-list p {
+    margin: 0.3rem 0 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.communication-overview-list a {
+    color: var(--primary);
+    font-weight: 850;
+    text-decoration: none;
+}
+
+.target-audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.target-audience-grid section {
+    border-top: 2px solid var(--primary);
+    padding-top: 0.8rem;
+}
+
+.target-audience-grid h3 {
+    margin: 0 0 0.7rem;
+    font-size: 0.9rem;
+}
+
+.target-scroll-list {
+    display: grid;
+    max-height: 18rem;
+    gap: 0.25rem;
+    overflow-y: auto;
+    padding-right: 0.35rem;
+}
+
+.communication-history-row,
+.failed-job-list details {
+    border-bottom: 1px solid var(--border);
+}
+
+.communication-history-row > summary,
+.failed-job-list summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+.communication-history-row > summary > span,
+.failed-job-list summary > span:first-child {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.communication-history-row small,
+.failed-job-list small {
+    color: var(--text-muted);
+}
+
+.communication-history-detail {
+    padding: 0 0 1.2rem;
+}
+
+.communication-history-detail > dl {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+}
+
+.communication-history-detail dl div,
+.system-fact-list div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.communication-history-detail dt,
+.system-fact-list dt,
+.health-check-row dt {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.communication-history-detail dd,
+.system-fact-list dd,
+.health-check-row dd {
+    margin: 0;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.communication-history-detail > p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.delivery-status-strip,
+.queue-summary-grid,
+.system-overall-status {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.delivery-status-strip span,
+.queue-summary-grid article,
+.system-overall-status > div {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.85rem;
+}
+
+.delivery-status-strip span + span,
+.queue-summary-grid article + article,
+.system-overall-status > div + div {
+    border-left: 1px solid var(--border);
+}
+
+.delivery-status-strip strong,
+.queue-summary-grid strong,
+.system-overall-status strong {
+    font-size: 1.35rem;
+}
+
+.delivery-status-strip span,
+.queue-summary-grid span,
+.queue-summary-grid small,
+.system-overall-status span {
+    color: var(--text-muted);
+    font-size: 0.73rem;
+}
+
+.system-overall-status {
+    margin-top: 1.5rem;
+    border-top-width: 4px;
+    background: var(--surface);
+}
+
+.system-status-healthy {
+    border-top-color: var(--success);
+}
+
+.system-status-warning {
+    border-top-color: var(--accent);
+}
+
+.system-status-critical {
+    border-top-color: var(--danger);
+}
+
+.health-check-row {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr) minmax(15rem, 0.8fr);
+    gap: 1.2rem;
+    align-items: start;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.health-check-row > div:first-child {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.health-check-row > div:first-child > span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.health-check-row > p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.health-check-row > dl {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.health-check-row > dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.35rem;
+}
+
+.health-check-healthy > div:first-child strong {
+    color: var(--success);
+}
+
+.health-check-warning > div:first-child strong {
+    color: color-mix(in srgb, var(--accent) 80%, var(--text));
+}
+
+.health-check-critical > div:first-child strong {
+    color: var(--danger);
+}
+
+.system-fact-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 0;
+}
+
+.system-audit-filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+}
+
+.system-audit-filters button {
+    min-height: 2.8rem;
+}
+
+.data-table details pre,
+.failed-job-list pre {
+    max-width: 58rem;
+    max-height: 24rem;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: var(--surface-muted);
+    padding: 0.8rem;
+    color: var(--text);
+    font-size: 0.72rem;
+}
+
+.queue-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 1080px) {
+    .target-audience-grid,
+    .communication-history-detail > dl,
+    .health-check-row,
+    .system-audit-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .health-check-row > p {
+        grid-column: 2;
+    }
+
+    .health-check-row > dl {
+        grid-column: 1 / -1;
+    }
+
+    .system-fact-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .notification-row {
+        grid-template-columns: 0.3rem minmax(0, 1fr);
+    }
+
+    .notification-row-actions {
+        grid-column: 2;
+        justify-content: flex-start;
+    }
+
+    .communication-overview-list article {
+        grid-template-columns: 2.5rem 1fr;
+    }
+
+    .communication-overview-list article > a {
+        grid-column: 2;
+    }
+
+    .target-audience-grid,
+    .communication-history-detail > dl,
+    .delivery-status-strip,
+    .queue-summary-grid,
+    .system-overall-status,
+    .health-check-row,
+    .system-fact-list,
+    .system-audit-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .delivery-status-strip span + span,
+    .queue-summary-grid article + article,
+    .system-overall-status > div + div {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+    }
+
+    .health-check-row > p,
+    .health-check-row > dl {
+        grid-column: auto;
+    }
+}
