@@ -141,3 +141,5 @@ The release tests:
 - question-bank locking
 - Teacher, Student, Parent, Report and public-checker route rendering
 - private learning-media authorization
+
+The branch was normalized with the repository's installed Laravel Pint version before the final read-only CI run.
