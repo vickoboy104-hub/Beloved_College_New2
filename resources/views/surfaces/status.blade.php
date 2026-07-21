@@ -1,7 +1,5 @@
 @php
-    use App\Enums\ThemeMode;
-
-    $theme = ThemeMode::default();
+    $theme = \App\Enums\ThemeMode::default();
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ $theme->value }}">
