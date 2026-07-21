@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'active', 'password.changed', 'last.seen'])->group(function (): void {
     Route::prefix('payments')->name('payments.')->middleware('permission:finance.pay_invoices')->group(function (): void {
+        Route::get('/', [PaymentController::class, 'index'])
+            ->middleware('role:student,parent')
+            ->name('index');
         Route::post('/invoices/{invoice}/checkout/{provider}', [PaymentController::class, 'checkout'])
             ->where('provider', 'paystack|flutterwave|monnify|palmpay')
             ->name('checkout');
