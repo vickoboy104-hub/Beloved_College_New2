@@ -1,0 +1,543 @@
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Unit\ExampleTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthat true is true[39m
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\AcademicRelationshipTest[39m
+  [32;1m✓[39;22m[90m [39m[90msession term class subject and teacher access remain connected[39m[90m      [39m [90m0.22s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\PromotionWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mrecommended promotion moves student records history and generates f[39m[90m…[39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Academics\TeacherAccessWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher access can be assigned revoked and restored[39m[90m                 [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal has privileged academic visibility without assignments[39m[90m    [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\PeopleAndAcademicsWorkspaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can open all people and academic workspaces[39m[90m                   [39m [90m0.08s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal can open academic and people workspaces[39m[90m                   [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mteacher cannot open student or staff administration[39m[90m                 [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Admin\PeopleWorkflowHttpTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can register student and receives one time credentials[39m[90m        [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal cannot create admin through staff route[39m[90m                   [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Audit\AuditLogTest[39m
+  [32;1m✓[39;22m[90m [39m[90mauthenticated write is logged without request secrets[39m[90m               [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\LegacyLoginTest[39m
+  [32;1m✓[39;22m[90m [39m[90muser can sign in with email[39m[90m                                         [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent can sign in with admission number[39m[90m                           [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent can sign in with student id[39m[90m                                 [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff can sign in with employee number[39m[90m                              [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent login rejects staff accounts[39m[90m                                [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90minactive account cannot sign in[39m[90m                                     [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Auth\PasswordChangeTest[39m
+  [32;1m✓[39;22m[90m [39m[90mtemporary password user is redirected before dashboard access[39m[90m       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90muser can replace temporary password[39m[90m                                 [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Authorization\PermissionServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90msuper admin has every permission[39m[90m                                    [39m [90m0.11s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin controls the operational platform but not super admin account[39m[90m…[39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mprincipal keeps academic control without theme or gateway control[39m[90m   [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mexplicit override can deny a default role permission[39m[90m                [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin cannot change super admin permissions[39m[90m                         [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Cbt\CbtScoreSyncTest[39m
+  [32;1m✓[39;22m[90m [39m[90msubmitted attempt waits for theory and then becomes graded[39m[90m          [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Cbt\CompleteCbtWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mobjective and theory attempt survives global shutdown and finishes[39m[90m… [39m [90m0.04s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\ExampleTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mthe application returns a successful response[39m[90m                       [39m [90m0.43s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceBalanceTest[39m
+  [32;1m✓[39;22m[90m [39m[90minvoice balance moves from unpaid to part paid and paid[39m[90m             [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mgrouped payment is allocated by due date without exceeding balances[39m[90m [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceOperationsWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mfee creation invoice generation manual payment and overpayment are[39m[90m… [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mduplicate fee scope is rejected[39m[90m                                     [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Finance\FinanceWorkspaceAndGatewaySettingsTest[39m
+  [32;1m✓[39;22m[90m [39m[90maccountant principal and admin can open finance but only admin conf[39m[90m…[39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mgateway secrets are encrypted and blank updates preserve them[39m[90m       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent and linked parent can open payment portal[39m[90m                   [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Learning\LearningWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher can publish create assess record and grade with exact acces[39m[90m…[39m [90m0.05s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbulk attendance updates the class register[39m[90m                          [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Media\PrivateLearningMediaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mstudent parent and assigned teacher can access learning files[39m[90m       [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90munassigned teacher cannot access submission file[39m[90m                    [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Media\PrivateProfileMediaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mlinked parent can view student private avatar[39m[90m                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90munassigned teacher cannot view student private avatar[39m[90m               [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can view student private avatar[39m[90m                               [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\LegacySchemaCompatibilityTest[39m
+  [32;1m✓[39;22m[90m [39m[90mall verified legacy tables exist[39m[90m                                    [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcomplete student history columns are available[39m[90m                      [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mfinance and report fields are preserved[39m[90m                             [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Migration\PublicCmsSchemaTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic cms newsletter media and theme tables exist[39m[90m                  [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Payments\PaystackWebhookTest[39m
+  [32;1m✓[39;22m[90m [39m[90msigned webhook is server verified and idempotent[39m[90m                    [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid signature is rejected without changing payment[39m[90m              [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Payments\VerifiedCheckoutWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mbrowser callback status is ignored until server verification succee[39m[90m…[39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90mbundle checkout allocates verified payment in due order[39m[90m             [39m [90m0.03s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\People\StaffLifecycleServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mprincipal can create teacher but cannot create admin[39m[90m                [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can create admin but not super admin[39m[90m                          [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstaff archive and restore are reversible[39m[90m                            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\People\StudentLifecycleServiceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mregistration creates student parent credentials and mandatory invoi[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent archive and restore preserve the record[39m[90m                     [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Portal\LearningPortalWorkspaceTest[39m
+  [32;1m✓[39;22m[90m [39m[90mteacher workspaces render on web and mobile surfaces[39m[90m                [39m [90m0.06s[39m  
+  [32;1m✓[39;22m[90m [39m[90mstudent and linked parent portals render[39m[90m                            [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mreport administration and public checker forms render[39m[90m               [39m [90m0.03s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\PortalSurfaceRoutingTest[39m
+  [31;1m⨯[39;22m[90m [39m[90mpublic host resolves to the public surface[39m[90m                          [39m [90m0.37s[39m  
+  [32;1m✓[39;22m[90m [39m[90mweb portal host resolves to the full web surface[39m[90m                    [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mapp portal host resolves to the mobile surface[39m[90m                      [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Reports\StudentReportWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mreports compile positions publish and validate public checker pin[39m[90m   [39m [90m0.04s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Settings\SettingEncryptionTest[39m
+  [32;1m✓[39;22m[90m [39m[90msensitive settings are encrypted at rest and decrypted for internal[39m[90m…[39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mblank admin secret submission preserves the existing secret[39m[90m         [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\ThemeContractTest[39m
+  [32;1m✓[39;22m[90m [39m[90mthe platform exposes exactly classic and dark themes[39m[90m                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90minvalid default theme falls back to classic[39m[90m                         [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90mdark can be selected as the default theme[39m[90m                           [39m [90m0.01s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Website\PublicWebsiteWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90mpublic pages render from fallback content[39m[90m                           [39m [90m0.04s[39m  
+  [32;1m✓[39;22m[90m [39m[90mcontact message is stored and queued for configured recipient[39m[90m       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mnewsletter records consent and resubscription[39m[90m                       [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90monly published due news is public[39m[90m                                   [39m [90m0.02s[39m  
+
+  [39;41;1m FAIL [39;49;22m[39m Tests\Feature\Website\ThemeManagerWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can publish and rollback classic theme revisions[39m[90m              [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90minaccessible colour pair is rejected[39m[90m                                [39m [90m0.01s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin controls whether users may select classic or dark[39m[90m             [39m [90m0.02s[39m  
+  [31;1m⨯[39;22m[90m [39m[90madmin theme workspace renders and principal is forbidden[39m[90m            [39m [90m0.02s[39m  
+
+  [30;42;1m PASS [39;49;22m[39m Tests\Feature\Website\WebsiteCmsWorkflowTest[39m
+  [32;1m✓[39;22m[90m [39m[90madmin can manage website but principal cannot[39m[90m                       [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can publish page content visible on public site[39m[90m               [39m [90m0.02s[39m  
+  [32;1m✓[39;22m[90m [39m[90mpublished uploaded media is served and hidden media is not[39m[90m          [39m [90m0.03s[39m  
+  [32;1m✓[39;22m[90m [39m[90madmin can update public school identity settings[39m[90m                    [39m [90m0.03s[39m  
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\ExampleTest[22m [90m>[39m the application returns a successful…    
+[39;1m  Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+PDOException: SQLSTATE[HY000]: General error: 1 no such table: settings in /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:435
+Stack trace:
+#0 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(435): PDO->prepare()
+#1 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(846): Illuminate\Database\Connection->{closure:Illuminate\Database\Connection::select():426}()
+#2 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(813): Illuminate\Database\Connection->runQueryCallback()
+#3 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(426): Illuminate\Database\Connection->run()
+#4 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3573): Illuminate\Database\Connection->select()
+#5 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3557): Illuminate\Database\Query\Builder->runSelect()
+#6 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(908): Illuminate\Database\Query\Builder->get()
+#7 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(890): Illuminate\Database\Eloquent\Builder->getModels()
+#8 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(43): Illuminate\Database\Eloquent\Builder->get()
+#9 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(625): App\Models\Setting::{closure:App\Models\Setting::allCached():42}()
+#10 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cache/CacheManager.php(600): Illuminate\Cache\Repository->rememberForever()
+#11 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Cache\CacheManager->__call()
+#12 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(40): Illuminate\Support\Facades\Facade::__callStatic()
+#13 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(53): App\Models\Setting::allCached()
+#14 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(130): App\Models\Setting::publicSettings()
+#15 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Controllers/Public/PublicWebsiteController.php(22): App\Services\Website\PublicWebsiteService->homepage()
+#16 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\Http\Controllers\Public\PublicWebsiteController->home()
+#17 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(276): Illuminate\Routing\ControllerDispatcher->dispatch()
+#18 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(216): Illuminate\Routing\Route->runController()
+#19 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\Routing\Route->run()
+#20 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#21 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/SetPortalSurface.php(25): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#22 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\SetPortalSurface->handle()
+#23 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/AuditUserActions.php(18): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\AuditUserActions->handle()
+#25 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(52): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#27 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestForgery.php(104): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestForgery->handle()
+#29 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#30 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#31 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#32 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#33 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#34 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#36 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#37 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#38 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#39 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#40 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#41 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#42 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#43 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#44 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#45 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#46 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle()
+#47 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#48 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#49 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#50 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#51 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#52 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#53 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#55 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#57 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#59 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#61 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#63 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#64 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#65 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#66 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#67 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#68 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(638): Illuminate\Foundation\Http\Kernel->handle()
+#69 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#70 /home/runner/work/Beloved_College_New2/Beloved_College_New2/tests/Feature/ExampleTest.php(15): Illuminate\Foundation\Testing\TestCase->get()
+#71 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1318): Tests\Feature\ExampleTest->test_the_application_returns_a_successful_response()
+#72 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1355): PHPUnit\Framework\TestCase->invokeTestMethod()
+#73 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(521): PHPUnit\Framework\TestCase->runTest()
+#74 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#75 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(361): PHPUnit\Framework\TestRunner->run()
+#76 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#77 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#78 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#79 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#80 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/Application.php(229): PHPUnit\TextUI\TestRunner->run()
+#81 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#82 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1 no such table: settings (Connection: sqlite, Database: :memory:, SQL: select "key", "value" from "settings") in /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:857
+Stack trace:
+#0 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(813): Illuminate\Database\Connection->runQueryCallback()
+#1 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(426): Illuminate\Database\Connection->run()
+#2 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3573): Illuminate\Database\Connection->select()
+#3 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3557): Illuminate\Database\Query\Builder->runSelect()
+#4 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(908): Illuminate\Database\Query\Builder->get()
+#5 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(890): Illuminate\Database\Eloquent\Builder->getModels()
+#6 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(43): Illuminate\Database\Eloquent\Builder->get()
+#7 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cache/Repository.php(625): App\Models\Setting::{closure:App\Models\Setting::allCached():42}()
+#8 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cache/CacheManager.php(600): Illuminate\Cache\Repository->rememberForever()
+#9 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(363): Illuminate\Cache\CacheManager->__call()
+#10 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(40): Illuminate\Support\Facades\Facade::__callStatic()
+#11 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Models/Setting.php(53): App\Models\Setting::allCached()
+#12 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(130): App\Models\Setting::publicSettings()
+#13 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Controllers/Public/PublicWebsiteController.php(22): App\Services\Website\PublicWebsiteService->homepage()
+#14 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\Http\Controllers\Public\PublicWebsiteController->home()
+#15 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(276): Illuminate\Routing\ControllerDispatcher->dispatch()
+#16 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(216): Illuminate\Routing\Route->runController()
+#17 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\Routing\Route->run()
+#18 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#19 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/SetPortalSurface.php(25): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#20 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\SetPortalSurface->handle()
+#21 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/AuditUserActions.php(18): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\AuditUserActions->handle()
+#23 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(52): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#25 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestForgery.php(104): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestForgery->handle()
+#27 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#29 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#30 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#31 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#32 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#34 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#36 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#37 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#38 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#39 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#40 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#41 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#42 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#43 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#44 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle()
+#45 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#46 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#47 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#48 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#49 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#50 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#51 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#53 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#55 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#57 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#59 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#61 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#63 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#64 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#65 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#66 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(638): Illuminate\Foundation\Http\Kernel->handle()
+#67 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#68 /home/runner/work/Beloved_College_New2/Beloved_College_New2/tests/Feature/ExampleTest.php(15): Illuminate\Foundation\Testing\TestCase->get()
+#69 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1318): Tests\Feature\ExampleTest->test_the_application_returns_a_successful_response()
+#70 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1355): PHPUnit\Framework\TestCase->invokeTestMethod()
+#71 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(521): PHPUnit\Framework\TestCase->runTest()
+#72 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#73 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(361): PHPUnit\Framework\TestRunner->run()
+#74 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#75 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#76 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#77 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#78 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/Application.php(229): PHPUnit\TextUI\TestRunner->run()
+#79 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#80 {main}
+
+----------------------------------------------------------------------------------
+
+SQLSTATE[HY000]: General error: 1 no such table: settings (Connection: sqlite, Database: :memory:, SQL: select "key", "value" from "settings")[39;22m
+
+  at [32mtests/Feature/ExampleTest.php[39m:[32m17[39m
+     13▕     public function test_the_application_returns_a_successful_response(): void
+     14▕     {
+     15▕         $response = $this->get('/');
+     16▕ 
+  ➜  17▕         $response->assertStatus(200);
+     18▕     }
+     19▕ }
+     20▕
+
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\PortalSurfaceRoutingTest[22m [90m>[39m public host resolves to…    
+[39;1m  Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+PDOException: SQLSTATE[HY000]: General error: 1 no such table: cms_pages in /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:435
+Stack trace:
+#0 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(435): PDO->prepare()
+#1 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(846): Illuminate\Database\Connection->{closure:Illuminate\Database\Connection::select():426}()
+#2 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(813): Illuminate\Database\Connection->runQueryCallback()
+#3 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(426): Illuminate\Database\Connection->run()
+#4 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3573): Illuminate\Database\Connection->select()
+#5 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3557): Illuminate\Database\Query\Builder->runSelect()
+#6 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(908): Illuminate\Database\Query\Builder->get()
+#7 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(890): Illuminate\Database\Eloquent\Builder->getModels()
+#8 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(366): Illuminate\Database\Eloquent\Builder->get()
+#9 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(106): Illuminate\Database\Eloquent\Builder->first()
+#10 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(134): App\Services\Website\PublicWebsiteService->page()
+#11 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Controllers/Public/PublicWebsiteController.php(22): App\Services\Website\PublicWebsiteService->homepage()
+#12 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\Http\Controllers\Public\PublicWebsiteController->home()
+#13 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(276): Illuminate\Routing\ControllerDispatcher->dispatch()
+#14 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(216): Illuminate\Routing\Route->runController()
+#15 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\Routing\Route->run()
+#16 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#17 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/SetPortalSurface.php(25): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#18 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\SetPortalSurface->handle()
+#19 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/AuditUserActions.php(18): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\AuditUserActions->handle()
+#21 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(52): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#23 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestForgery.php(104): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestForgery->handle()
+#25 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#27 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#28 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#29 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#30 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#32 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#34 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#36 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#37 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#38 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#39 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#40 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#41 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#42 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle()
+#43 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#44 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#45 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#46 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#47 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#48 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#49 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#51 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#53 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#55 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#57 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#59 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#61 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#62 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#63 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#64 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(638): Illuminate\Foundation\Http\Kernel->handle()
+#65 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#66 /home/runner/work/Beloved_College_New2/Beloved_College_New2/tests/Feature/PortalSurfaceRoutingTest.php(12): Illuminate\Foundation\Testing\TestCase->get()
+#67 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1318): Tests\Feature\PortalSurfaceRoutingTest->test_public_host_resolves_to_the_public_surface()
+#68 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1355): PHPUnit\Framework\TestCase->invokeTestMethod()
+#69 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(521): PHPUnit\Framework\TestCase->runTest()
+#70 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#71 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(361): PHPUnit\Framework\TestRunner->run()
+#72 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#73 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#74 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#75 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#76 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/Application.php(229): PHPUnit\TextUI\TestRunner->run()
+#77 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#78 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1 no such table: cms_pages (Connection: sqlite, Database: :memory:, SQL: select * from "cms_pages" where "slug" = home and "is_published" = 1 limit 1) in /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:857
+Stack trace:
+#0 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(813): Illuminate\Database\Connection->runQueryCallback()
+#1 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Connection.php(426): Illuminate\Database\Connection->run()
+#2 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3573): Illuminate\Database\Connection->select()
+#3 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3557): Illuminate\Database\Query\Builder->runSelect()
+#4 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(908): Illuminate\Database\Query\Builder->get()
+#5 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(890): Illuminate\Database\Eloquent\Builder->getModels()
+#6 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(366): Illuminate\Database\Eloquent\Builder->get()
+#7 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(106): Illuminate\Database\Eloquent\Builder->first()
+#8 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Services/Website/PublicWebsiteService.php(134): App\Services\Website\PublicWebsiteService->page()
+#9 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Controllers/Public/PublicWebsiteController.php(22): App\Services\Website\PublicWebsiteService->homepage()
+#10 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\Http\Controllers\Public\PublicWebsiteController->home()
+#11 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(276): Illuminate\Routing\ControllerDispatcher->dispatch()
+#12 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Route.php(216): Illuminate\Routing\Route->runController()
+#13 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\Routing\Route->run()
+#14 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#15 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/SetPortalSurface.php(25): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#16 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\SetPortalSurface->handle()
+#17 /home/runner/work/Beloved_College_New2/Beloved_College_New2/app/Http/Middleware/AuditUserActions.php(18): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#18 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): App\Http\Middleware\AuditUserActions->handle()
+#19 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(52): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#21 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestForgery.php(104): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#22 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestForgery->handle()
+#23 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#24 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
+#25 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#26 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
+#27 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle()
+#28 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#29 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
+#30 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle()
+#32 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#34 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#35 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#36 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#37 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#38 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#39 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#40 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle()
+#41 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#42 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#43 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#44 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#45 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#46 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#47 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#48 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#49 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#50 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#51 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#52 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#53 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#54 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#55 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#56 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#57 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#58 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#59 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#60 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#61 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#62 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(638): Illuminate\Foundation\Http\Kernel->handle()
+#63 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(368): Illuminate\Foundation\Testing\TestCase->call()
+#64 /home/runner/work/Beloved_College_New2/Beloved_College_New2/tests/Feature/PortalSurfaceRoutingTest.php(12): Illuminate\Foundation\Testing\TestCase->get()
+#65 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1318): Tests\Feature\PortalSurfaceRoutingTest->test_public_host_resolves_to_the_public_surface()
+#66 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(1355): PHPUnit\Framework\TestCase->invokeTestMethod()
+#67 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(521): PHPUnit\Framework\TestCase->runTest()
+#68 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#69 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestCase.php(361): PHPUnit\Framework\TestRunner->run()
+#70 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#71 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#72 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#73 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#74 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/src/TextUI/Application.php(229): PHPUnit\TextUI\TestRunner->run()
+#75 /home/runner/work/Beloved_College_New2/Beloved_College_New2/vendor/phpunit/phpunit/phpunit(104): PHPUnit\TextUI\Application->run()
+#76 {main}
+
+----------------------------------------------------------------------------------
+
+SQLSTATE[HY000]: General error: 1 no such table: cms_pages (Connection: sqlite, Database: :memory:, SQL: select * from "cms_pages" where "slug" = home and "is_published" = 1 limit 1)[39;22m
+
+  at [32mtests/Feature/PortalSurfaceRoutingTest.php[39m:[32m15[39m
+     11▕     {
+     12▕         $response = $this->get($this->urlForHost(config('platform.hosts.public')));
+     13▕ 
+     14▕         $response
+  ➜  15▕             ->assertOk()
+     16▕             ->assertViewIs('surfaces.status')
+     17▕             ->assertViewHas('portalSurface', PortalSurface::PublicSite)
+     18▕             ->assertSee('data-portal-surface="public"', false);
+     19▕     }
+
+  [31m────────────────────────────────────────────────────────────────────────────[39m  
+  [41;1m FAILED [49;22m [1mTests\Feature\Website\ThemeManagerWorkflowTest[22m [90m>[39m admin theme work…   
+[39;1m  Expected: [39;22m[31m<!DOCTYPE html>\n[39m[39;1m
+  [39;22m[31m<html lang="en" data-theme="classic" style="--page: #f7f7f2; --surface: #ffffff; --surface-muted: #eef3fb; --surface-strong: #e4ebf7; --primary: #1346a0; --primary-strong: #0b347c; --primary-soft: #dce8ff; --accent: #f4c430; --accent-soft: #fff3b8; --text: #10213d; --text-muted: #64748b; --border: #d7deea; --success: #147a4b; --success-soft: #e6f7ef; --danger: #b42318; --danger-soft: #fff0ee; --header: #0b347c; --header-text: #ffffff;">[39m[31m\n[39m[39;1m
+  [39;22m[31m    [39m[31m<head>[39m[31m\n[39m[39;1m
+  [39;22m[90m... (210 more lines)[39m[39;1m
+
+  To contain: [39;22m[32mSemantic tokens[39m
+
+  at [32mtests/Feature/Website/ThemeManagerWorkflowTest.php[39m:[32m95[39m
+     91▕         $this->actingAs($admin)
+     92▕             ->get($this->webUrl('/admin/website/themes'))
+     93▕             ->assertOk()
+     94▕             ->assertSee('Classic and Dark Themes')
+  ➜  95▕             ->assertSee('Semantic tokens');
+     96▕ 
+     97▕         $this->actingAs($principal)
+     98▕             ->get($this->webUrl('/admin/website/themes'))
+     99▕             ->assertForbidden();
+
+
+  [90mTests:[39m    [31;1m3 failed[39;22m[90m,[39m[39m [39m[32;1m75 passed[39;22m[90m (427 assertions)[39m
+  [90mDuration:[39m [39m2.96s[39m
+
