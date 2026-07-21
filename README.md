@@ -42,7 +42,8 @@ The three surfaces are not separate school systems. They share one authenticatio
 - targeted announcements, notification inboxes and Parent absence alerts
 - audit search, queue controls, system health and encrypted SMTP administration
 - permanent account security events and Admin-controlled identity policy
-- read-only migration inventory, finance reconciliation, file checksums and deployment preflight on the current release branch
+- read-only migration inventory, finance reconciliation, file checksums and deployment preflight
+- packaged staging rehearsal and acceptance evidence gating on the current release branch
 
 See [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md) for the current release-by-release status.
 
@@ -55,7 +56,25 @@ php artisan migration:files --connection=mysql --disk=local --disk=public --stri
 php artisan deployment:preflight --strict
 ```
 
-These commands generate confidential JSON reports and do not perform the production data transfer.
+## Packaged staging rehearsal
+
+```bash
+php artisan deployment:rehearse rehearsal-2026-07-01 \
+  --source=legacy \
+  --target=mysql \
+  --source-snapshot=legacy-backup-20260721T220000Z \
+  --operator="Named Migration Operator" \
+  --commit="$APP_COMMIT_SHA" \
+  --source-disk=legacy_private \
+  --source-disk=legacy_public \
+  --target-disk=local \
+  --target-disk=public \
+  --strict
+```
+
+The first run creates the acceptance template. A final run with `--acceptance=<path> --require-acceptance` marks cutover eligible only when technical reconciliation, all role tests and all owner approvals pass.
+
+These commands generate confidential evidence packages and do not perform the production data transfer.
 
 ## Non-negotiable requirements
 
@@ -77,6 +96,7 @@ These commands generate confidential JSON reports and do not perform the product
 - [`docs/migration/IMPLEMENTATION_STATUS.md`](docs/migration/IMPLEMENTATION_STATUS.md)
 - [`docs/migration/DATA_AND_FILE_PRESERVATION.md`](docs/migration/DATA_AND_FILE_PRESERVATION.md)
 - [`docs/migration/MIGRATION_DEPLOYMENT_READINESS.md`](docs/migration/MIGRATION_DEPLOYMENT_READINESS.md)
+- [`docs/migration/STAGING_REHEARSAL_CHECKLIST.md`](docs/migration/STAGING_REHEARSAL_CHECKLIST.md)
 - [`docs/migration/PRODUCTION_CUTOVER_RUNBOOK.md`](docs/migration/PRODUCTION_CUTOVER_RUNBOOK.md)
 - [`docs/migration/PRODUCTION_ROLLBACK_RUNBOOK.md`](docs/migration/PRODUCTION_ROLLBACK_RUNBOOK.md)
 - [`docs/ui/INTERFACE_PRINCIPLES.md`](docs/ui/INTERFACE_PRINCIPLES.md)
@@ -108,4 +128,4 @@ The default local database is SQLite. Production database credentials and secret
 
 ## Migration status
 
-The core school workflows, public website, payments, communications, operational administration and identity hardening are implemented and test-backed. The current release adds read-only migration and deployment evidence tooling. Production data and uploaded files have not been migrated or modified; staging rehearsal, reconciliation, role acceptance and formal cutover approval remain required.
+The core school workflows, public website, payments, communications, operational administration, identity hardening and read-only migration readiness tooling are implemented and test-backed. The current release packages complete technical rehearsal evidence and human approval gates. Production data and uploaded files have not been migrated or modified; an actual staging rehearsal and formal cutover approval still require protected infrastructure and approved legacy copies.

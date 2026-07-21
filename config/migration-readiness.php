@@ -36,4 +36,23 @@ return [
     'file_column_pattern' => '/(^path$|_path$|_file$|file_path$|photo$|photo_path$|avatar_path$|passport_path$|video_path$|document_path$|receipt_path$)/i',
     'file_disks' => ['local', 'public'],
     'required_php_extensions' => ['bcmath', 'ctype', 'fileinfo', 'intl', 'mbstring', 'openssl', 'pdo', 'tokenizer', 'xml'],
+
+    'required_acceptance_roles' => [
+        'public_visitor' => 'Public Visitor',
+        'student' => 'Student',
+        'parent' => 'Parent',
+        'teacher' => 'Teacher',
+        'accountant' => 'Accountant',
+        'principal' => 'Principal',
+        'admin' => 'Admin',
+        'super_admin' => 'Super Admin',
+    ],
+
+    'required_approvals' => [
+        'technical_owner' => 'Technical Owner',
+        'data_migration_owner' => 'Data Migration Owner',
+        'school_operations_owner' => 'School Operations Owner',
+        'finance_owner' => 'Finance Owner',
+        'rollback_owner' => 'Rollback Owner',
+    ],
 ];

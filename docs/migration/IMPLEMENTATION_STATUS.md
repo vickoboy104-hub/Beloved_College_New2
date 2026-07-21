@@ -92,47 +92,57 @@ This document summarizes completed New2 releases without replacing the detailed 
 - synchronous mail diagnostics
 - operational thresholds and retention settings
 
-## Current release branch
-
-`workflows/migration-deployment-readiness`
-
-The branch adds:
+### Migration and deployment readiness
 
 - production-blocked read-only migration tooling
-- complete database schema and row inventory
-- duplicate identity detection
-- foreign-key orphan detection
+- complete schema, row, duplicate and orphan inventory
 - exact invoice and payment reconciliation in minor units
 - source-to-target row and finance comparison
 - database-referenced file manifests
 - file size, MIME type and SHA-256 verification
 - missing, external and unsafe-path classification
 - APP_KEY fingerprint continuity checks
-- explicit trusted-host enforcement
+- exact trusted-host enforcement
 - database, migration, storage, queue, scheduler, session and mail preflight
-- timestamped machine-readable JSON reports
-- staging approval criteria
-- production cutover runbook
-- production rollback runbook
+- timestamped JSON reports
+- staging checklist, production cutover and rollback runbooks
 
-This release is complete only after its pull request passes Composer validation, migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
+## Current release branch
 
-## Remaining after migration/deployment readiness
+`workflows/staging-rehearsal-orchestration`
 
-### Staging rehearsal and production cutover
+The branch adds:
 
-These require actual protected infrastructure and approved copies of legacy assets:
+- one command for the complete staging rehearsal
+- isolated legacy private/public file roots
+- source-to-target checksum and byte-size comparison by owning record
+- technical rehearsal pass, warning and critical status
+- role acceptance template for Public Visitor, Student, Parent, Teacher, Accountant, Principal, Admin and Super Admin
+- named approvals for technical, migration, operations, finance and rollback owners
+- strict cutover-eligibility gating
+- versioned evidence packages
+- consolidated JSON report
+- human-readable Markdown summary
+- evidence manifest with SHA-256 and byte size for every package file
+- preservation of pending or failed rehearsal evidence
+
+This release is complete only after its pull request passes Composer validation, fresh migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
+
+## Remaining after rehearsal orchestration
+
+### Actual staging rehearsal and production cutover
+
+These require protected infrastructure and approved copies of legacy assets:
 
 - create a read-only legacy database user
 - restore a recent legacy database copy into staging
-- copy all legacy uploads into staging
+- copy all legacy private and public uploads into isolated staging roots
 - supply the original APP_KEY through protected environment configuration
-- run inventory, reconciliation, file manifest and preflight reports
+- run the packaged rehearsal command
 - correct every critical mismatch
-- complete role-based acceptance tests
+- complete all role evidence and owner approvals
 - rehearse backup and rollback
 - configure production DNS, TLS, queue, scheduler, SMTP and payment callbacks
-- obtain finance, operations and technical sign-off
 - execute the approved production cutover
 
 ### Explicit product-decision modules
