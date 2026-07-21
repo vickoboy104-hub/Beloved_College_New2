@@ -17,8 +17,12 @@ use Illuminate\View\View;
 
 class NewPasswordController extends Controller
 {
-    public function create(Request $request, string $token): View
+    public function create(Request $request, string $token): View|RedirectResponse
     {
+        if ($request->user()) {
+            return redirect()->route($this->surfaceRoute('security.index'));
+        }
+
         return view('auth.reset-password', [
             'surface' => app(PortalSurface::class),
             'token' => $token,
@@ -31,6 +35,10 @@ class NewPasswordController extends Controller
         SessionSecurityService $sessions,
         SecurityEventService $security,
     ): RedirectResponse {
+        if ($request->user()) {
+            return redirect()->route($this->surfaceRoute('security.index'));
+        }
+
         $data = $request->validate([
             'token' => ['required', 'string'],
             'email' => ['required', 'email', 'max:255'],
