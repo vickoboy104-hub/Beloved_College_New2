@@ -16,9 +16,7 @@ class DeploymentPreflightService
     public function report(): array
     {
         $checks = [
-            $this->check('app_key', filled(config('app.key')), 'Application encryption key is configured.', 'APP_KEY is missing.', true, [
-                'fingerprint' => filled(config('app.key')) ? substr(hash('sha256', (string) config('app.key')), 0, 16) : null,
-            ]),
+            $this->appKey(),
             $this->check('debug', ! (bool) config('app.debug'), 'Debug mode is disabled.', 'APP_DEBUG must be false before production cutover.', app()->environment('production')),
             $this->check('https', str_starts_with((string) config('app.url'), 'https://'), 'APP_URL uses HTTPS.', 'APP_URL should use HTTPS in production.', app()->environment('production'), [
                 'app_url' => config('app.url'),
@@ -63,6 +61,29 @@ class DeploymentPreflightService
             'message' => $passed ? $success : $failure,
             'details' => $details,
         ];
+    }
+
+    /** @return array<string, mixed> */
+    private function appKey(): array
+    {
+        $key = (string) config('app.key');
+        $fingerprint = $key !== '' ? hash('sha256', $key) : null;
+        $expected = trim((string) config('migration-readiness.expected_app_key_fingerprint'));
+        $matches = $key !== '' && ($expected === '' || hash_equals(strtolower($expected), strtolower((string) $fingerprint)));
+
+        return $this->check(
+            'app_key',
+            $matches,
+            $expected === ''
+                ? 'Application encryption key is configured; record and verify its fingerprint before cutover.'
+                : 'Application encryption key matches the approved legacy fingerprint.',
+            $key === '' ? 'APP_KEY is missing.' : 'APP_KEY does not match the approved legacy fingerprint.',
+            true,
+            [
+                'fingerprint' => $fingerprint,
+                'expected_fingerprint_configured' => $expected !== '',
+            ],
+        );
     }
 
     /** @return array<string, mixed> */
