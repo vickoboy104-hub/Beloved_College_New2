@@ -206,17 +206,20 @@ class CbtService
 
     public function startAttempt(Student $student, Assessment $assessment): CbtAttempt
     {
-        $this->assertAssessmentOpenForStudent($student, $assessment);
-
         $existing = CbtAttempt::query()
             ->where('assessment_id', $assessment->id)
             ->where('student_id', $student->id)
             ->first();
 
         if ($existing) {
+            if (! $existing->submitted_at && $existing->status === 'in_progress') {
+                $this->assertAssessmentOpenForStudent($student, $assessment, allowAlreadyStarted: true);
+            }
+
             return $existing;
         }
 
+        $this->assertAssessmentOpenForStudent($student, $assessment);
         $expiresAt = now()->addMinutes((int) $assessment->cbt_duration_minutes);
 
         if ($assessment->cbt_ends_at && $expiresAt->isAfter($assessment->cbt_ends_at)) {
@@ -240,19 +243,22 @@ class CbtService
      */
     public function submitAttempt(Student $student, Assessment $assessment, array $answers): CbtAttempt
     {
-        $this->assertAssessmentOpenForStudent($student, $assessment, allowAlreadyStarted: true);
         $attempt = CbtAttempt::query()
             ->with('assessment')
             ->where('assessment_id', $assessment->id)
             ->where('student_id', $student->id)
             ->firstOrFail();
+        $this->assertAssessmentOpenForStudent($student, $assessment, allowAlreadyStarted: true);
 
         if ($attempt->submitted_at || $attempt->status !== 'in_progress') {
             throw ValidationException::withMessages(['assessment' => 'This CBT attempt has already been submitted.']);
         }
 
-        if (($attempt->expires_at && now()->isAfter($attempt->expires_at))
-            || ($assessment->cbt_ends_at && now()->isAfter($assessment->cbt_ends_at))) {
+        $attemptDeadline = $attempt->expires_at?->copy()->addMinutes(2);
+        $assessmentDeadline = $assessment->cbt_ends_at?->copy()->addMinutes(2);
+
+        if (($attemptDeadline && now()->isAfter($attemptDeadline))
+            || ($assessmentDeadline && now()->isAfter($assessmentDeadline))) {
             throw ValidationException::withMessages(['assessment' => 'The CBT submission window has closed.']);
         }
 
@@ -425,16 +431,28 @@ class CbtService
         Assessment $assessment,
         bool $allowAlreadyStarted = false,
     ): void {
-        if (! $this->globalEnabled()) {
-            throw ValidationException::withMessages(['assessment' => 'CBT access is temporarily disabled.']);
-        }
-
-        if (! $assessment->is_cbt || ! $assessment->cbt_is_active) {
-            throw ValidationException::withMessages(['assessment' => 'This CBT is not active.']);
+        if (! $assessment->is_cbt) {
+            throw ValidationException::withMessages(['assessment' => 'The selected assessment is not a CBT.']);
         }
 
         if ((int) $student->school_class_id !== (int) $assessment->school_class_id) {
             throw new AuthorizationException('This CBT does not belong to the student’s class.');
+        }
+
+        if ($assessment->cbtQuestions()->count() < 1) {
+            throw ValidationException::withMessages(['assessment' => 'This CBT does not contain any questions.']);
+        }
+
+        if ($allowAlreadyStarted) {
+            return;
+        }
+
+        if (! $this->globalEnabled()) {
+            throw ValidationException::withMessages(['assessment' => 'CBT access is temporarily disabled.']);
+        }
+
+        if (! $assessment->cbt_is_active) {
+            throw ValidationException::withMessages(['assessment' => 'This CBT is not active.']);
         }
 
         if ($assessment->cbt_starts_at && now()->isBefore($assessment->cbt_starts_at)) {
@@ -443,14 +461,6 @@ class CbtService
 
         if ($assessment->cbt_ends_at && now()->isAfter($assessment->cbt_ends_at)) {
             throw ValidationException::withMessages(['assessment' => 'This CBT has ended.']);
-        }
-
-        if ($assessment->cbtQuestions()->count() < 1) {
-            throw ValidationException::withMessages(['assessment' => 'This CBT does not contain any questions.']);
-        }
-
-        if (! $allowAlreadyStarted) {
-            return;
         }
     }
 }
