@@ -105,6 +105,16 @@ class User extends Authenticatable
         return $this->hasMany(Announcement::class, 'author_id');
     }
 
+    public function announcementDeliveries(): HasMany
+    {
+        return $this->hasMany(AnnouncementDelivery::class);
+    }
+
+    public function auditLogs(): HasMany
+    {
+        return $this->hasMany(AuditLog::class);
+    }
+
     public function permissionOverrides(): HasMany
     {
         return $this->hasMany(UserPermissionOverride::class);
