@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordChangeController;
 use App\Http\Controllers\Portal\DashboardController;
+use App\Http\Controllers\PrivateMediaController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'surfaces.status', [
@@ -24,6 +25,9 @@ Route::middleware(['auth', 'active'])->group(function (): void {
         ->name('password-change.update');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+    Route::get('/private-media/users/{user}/avatar', [PrivateMediaController::class, 'avatar'])
+        ->middleware('throttle:120,1')
+        ->name('private-media.avatar');
 
     Route::get('/dashboard', DashboardController::class)
         ->middleware(['password.changed', 'last.seen'])

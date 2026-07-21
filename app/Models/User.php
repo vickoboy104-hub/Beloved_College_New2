@@ -31,6 +31,9 @@ use Illuminate\Notifications\Notifiable;
     'last_seen_at',
     'must_change_password',
     'preferred_theme',
+    'archived_at',
+    'archived_by',
+    'archive_reason',
 ])]
 #[Hidden(['password', 'remember_token', 'avatar_path'])]
 class User extends Authenticatable
@@ -43,6 +46,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'last_seen_at' => 'datetime',
+            'archived_at' => 'datetime',
             'password' => 'hashed',
             'role' => UserRole::class,
             'must_change_password' => 'boolean',
@@ -147,7 +151,12 @@ class User extends Authenticatable
 
     public function isActive(): bool
     {
-        return strtolower((string) $this->status) === 'active';
+        return strtolower((string) $this->status) === 'active' && ! $this->isArchived();
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->archived_at !== null;
     }
 
     public function isClassTeacher(): bool
