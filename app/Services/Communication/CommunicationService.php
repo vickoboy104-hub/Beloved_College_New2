@@ -28,6 +28,7 @@ class CommunicationService
         $status = ($data['dispatch_now'] ?? false)
             ? 'scheduled'
             : (filled($startsAt) ? 'scheduled' : 'draft');
+        $isPublic = (bool) ($data['is_public'] ?? false);
 
         $announcement = Announcement::query()->create([
             'title' => $data['title'],
@@ -42,8 +43,8 @@ class CommunicationService
             'user_ids' => array_values(array_map('intval', $data['user_ids'] ?? [])),
             'portal_enabled' => (bool) ($data['portal_enabled'] ?? true),
             'email_enabled' => (bool) ($data['email_enabled'] ?? false),
-            'is_published' => (bool) ($data['is_public'] ?? false),
-            'published_at' => ($data['is_public'] ?? false) ? now() : null,
+            'is_published' => $isPublic,
+            'published_at' => $isPublic ? ($startsAt ?: now()) : null,
             'starts_at' => $startsAt,
             'expires_at' => $data['expires_at'] ?? null,
             'status' => $status,
@@ -84,6 +85,10 @@ class CommunicationService
                 ->merge($studentUsers->pluck('parent_user_id')->filter());
         }
 
+        if ($userIds->isEmpty() && $roles->isEmpty()) {
+            return collect();
+        }
+
         $query->where(function (Builder $builder) use ($userIds, $roles): void {
             if ($userIds->isNotEmpty()) {
                 $builder->whereIn('id', $userIds->unique()->values());
@@ -106,6 +111,10 @@ class CommunicationService
     public function dispatch(Announcement $announcement): int
     {
         $announcement->refresh();
+
+        if ($announcement->dispatched_at || $announcement->status === 'dispatched') {
+            return 0;
+        }
 
         if ($announcement->isExpired()) {
             $announcement->update(['status' => 'expired']);
