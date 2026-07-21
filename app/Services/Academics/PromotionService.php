@@ -162,6 +162,7 @@ class PromotionService
 
             if (! in_array($decision, ['promote', 'repeat'], true)) {
                 $errors[] = $student->user->fullName().' has an invalid promotion decision.';
+
                 continue;
             }
 
@@ -172,6 +173,7 @@ class PromotionService
 
             if (! $targetClassId) {
                 $errors[] = $student->user->fullName().' needs a target class before the promotion can be processed.';
+
                 continue;
             }
 
@@ -179,6 +181,7 @@ class PromotionService
 
             if (! $targetClass) {
                 $errors[] = $student->user->fullName().' has an invalid target class selection.';
+
                 continue;
             }
 

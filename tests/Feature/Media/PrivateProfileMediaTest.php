@@ -37,7 +37,7 @@ class PrivateProfileMediaTest extends TestCase
         $this->actingAs($parent)
             ->get($this->appUrl("/private-media/users/{$studentUser->id}/avatar"))
             ->assertOk()
-            ->assertHeader('Cache-Control', 'private, max-age=300');
+            ->assertHeader('Cache-Control', 'max-age=300, private');
     }
 
     public function test_unassigned_teacher_cannot_view_student_private_avatar(): void

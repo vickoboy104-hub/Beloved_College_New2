@@ -5,7 +5,6 @@ namespace App\Services\People;
 use App\Models\AcademicSession;
 use App\Models\SchoolClass;
 use App\Models\Student;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;

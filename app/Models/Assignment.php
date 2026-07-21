@@ -21,6 +21,8 @@ class Assignment extends Model
         'due_date',
         'total_score',
         'status',
+        'allowed_submission_types',
+        'max_submission_files',
     ];
 
     protected function casts(): array
@@ -29,6 +31,8 @@ class Assignment extends Model
             'attachment_images' => 'array',
             'due_date' => 'datetime',
             'total_score' => 'decimal:2',
+            'allowed_submission_types' => 'array',
+            'max_submission_files' => 'integer',
         ];
     }
 
@@ -50,5 +54,12 @@ class Assignment extends Model
     public function submissions(): HasMany
     {
         return $this->hasMany(AssignmentSubmission::class);
+    }
+
+    public function accepts(string $type): bool
+    {
+        $types = $this->allowed_submission_types ?: ['text'];
+
+        return in_array($type, $types, true);
     }
 }
