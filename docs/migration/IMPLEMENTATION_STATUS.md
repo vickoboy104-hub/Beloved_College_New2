@@ -16,6 +16,10 @@ This document summarizes completed New2 releases without replacing the detailed 
 - email, admission-number, student-ID and employee-number login
 - Student, Parent and Staff entry points
 - temporary credentials and mandatory first password replacement
+- private password recovery for active accounts
+- signed email verification with legacy-safe enforcement
+- active database-session review and revocation
+- successful-login and security-event history
 - active-account enforcement
 - Super Admin, Admin, Principal, Accountant, Teacher, Parent and Student roles
 - permission defaults and user overrides
@@ -90,26 +94,46 @@ This document summarizes completed New2 releases without replacing the detailed 
 
 ## Current release branch
 
-`workflows/identity-hardening`
+`workflows/migration-deployment-readiness`
 
 The branch adds:
 
-- private email-based password recovery
-- active-account reset eligibility
-- signed surface-aware email verification
-- legacy-safe verification enforcement
-- Account Security workspace on both portal surfaces
-- database-session visibility and revocation
-- password-driven revocation of other sessions
-- complete session revocation after password reset
-- successful-login history
-- permanent security-event ledger
-- portal and optional email security alerts
-- Admin identity readiness counts and policy controls
+- production-blocked read-only migration tooling
+- complete database schema and row inventory
+- duplicate identity detection
+- foreign-key orphan detection
+- exact invoice and payment reconciliation in minor units
+- source-to-target row and finance comparison
+- database-referenced file manifests
+- file size, MIME type and SHA-256 verification
+- missing, external and unsafe-path classification
+- APP_KEY fingerprint continuity checks
+- explicit trusted-host enforcement
+- database, migration, storage, queue, scheduler, session and mail preflight
+- timestamped machine-readable JSON reports
+- staging approval criteria
+- production cutover runbook
+- production rollback runbook
 
 This release is complete only after its pull request passes Composer validation, migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
 
-## Remaining after identity hardening
+## Remaining after migration/deployment readiness
+
+### Staging rehearsal and production cutover
+
+These require actual protected infrastructure and approved copies of legacy assets:
+
+- create a read-only legacy database user
+- restore a recent legacy database copy into staging
+- copy all legacy uploads into staging
+- supply the original APP_KEY through protected environment configuration
+- run inventory, reconciliation, file manifest and preflight reports
+- correct every critical mismatch
+- complete role-based acceptance tests
+- rehearse backup and rollback
+- configure production DNS, TLS, queue, scheduler, SMTP and payment callbacks
+- obtain finance, operations and technical sign-off
+- execute the approved production cutover
 
 ### Explicit product-decision modules
 
@@ -122,16 +146,3 @@ These require detailed workflow approval before implementation:
 - payroll disbursement
 - hosting-specific backup dashboard and restore workflow
 - privileged-role multi-factor authentication enrollment and recovery
-
-### Production migration and deployment
-
-- production database backup
-- uploaded-file inventory and copy rehearsal
-- record-count and financial reconciliation
-- APP_KEY and encrypted-setting continuity
-- production queue, mail and scheduler setup
-- DNS and TLS for public, `web.` and `app.` hosts
-- deployment rehearsal
-- acceptance testing by every role
-- rollback rehearsal
-- final cutover approval

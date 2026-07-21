@@ -17,6 +17,15 @@ return [
         'app' => env('APP_PORTAL_HOST', 'app.belovedcollege.test'),
     ],
 
+    'trusted_hosts' => array_values(array_filter([
+        env('PUBLIC_HOST', 'belovedcollege.test'),
+        env('WEB_PORTAL_HOST', 'web.belovedcollege.test'),
+        env('APP_PORTAL_HOST', 'app.belovedcollege.test'),
+        ...array_filter(array_map('trim', explode(',', (string) env('ADDITIONAL_TRUSTED_HOSTS', '')))),
+        'localhost',
+        '127.0.0.1',
+    ])),
+
     /*
     |--------------------------------------------------------------------------
     | Theme Contract
