@@ -7,6 +7,9 @@ Route::middleware(['auth', 'active', 'password.changed', 'last.seen', 'permissio
     ->prefix('payments')
     ->name('payments.')
     ->group(function (): void {
+        Route::get('/', [PaymentController::class, 'index'])
+            ->middleware('role:student,parent')
+            ->name('index');
         Route::post('/invoices/{invoice}/checkout/{provider}', [PaymentController::class, 'checkout'])
             ->where('provider', 'paystack|flutterwave|monnify|palmpay')
             ->name('checkout');
