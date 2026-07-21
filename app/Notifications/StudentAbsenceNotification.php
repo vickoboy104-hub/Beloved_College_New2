@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Models\AttendanceRecord;
 use App\Models\Setting;
 use App\Models\User;
+use App\Services\System\MailConfigurationService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -78,6 +79,7 @@ class StudentAbsenceNotification extends Notification implements ShouldQueue
 
     public function toMail(object $notifiable): MailMessage
     {
+        app(MailConfigurationService::class)->apply();
         $record = $this->record();
         $studentName = $record->student->user->fullName();
 
