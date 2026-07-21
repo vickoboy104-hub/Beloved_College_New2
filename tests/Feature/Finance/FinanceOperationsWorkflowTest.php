@@ -4,7 +4,6 @@ namespace Tests\Feature\Finance;
 
 use App\Enums\UserRole;
 use App\Models\AcademicSession;
-use App\Models\FeeItem;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Models\User;

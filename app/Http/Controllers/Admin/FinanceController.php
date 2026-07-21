@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FeeInvoice;
 use App\Models\FeeItem;
 use App\Models\Payment;
+use App\Models\SchoolClass;
 use App\Services\Finance\FinanceDirectoryService;
 use App\Services\Finance\FinanceService;
 use App\Services\Payments\PaymentAccessService;
@@ -137,7 +138,7 @@ class FinanceController extends Controller
             'fee_item_ids' => ['nullable', 'array'],
             'fee_item_ids.*' => ['integer', 'exists:fee_items,id'],
         ]);
-        $class = \App\Models\SchoolClass::query()->findOrFail($data['class_id']);
+        $class = SchoolClass::query()->findOrFail($data['class_id']);
         $ids = collect($data['fee_item_ids'] ?? [])->map(fn (mixed $id) => (int) $id);
         $items = FeeItem::query()
             ->with(['term', 'schoolClass'])

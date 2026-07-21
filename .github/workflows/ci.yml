@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -44,9 +41,6 @@ jobs:
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
 
-      - name: Apply repository formatter
-        run: vendor/bin/pint
-
       - name: Prepare test environment
         run: |
           cp .env.example .env
@@ -59,19 +53,8 @@ jobs:
       - name: Build frontend assets
         run: npm run build
 
-      - name: Run automated tests and capture diagnostics
-        run: |
-          set +e
-          php artisan test > docs/ci-finance-test-output.txt 2>&1
-          test_status=$?
-          set -e
-          git fetch origin main
-          git checkout origin/main -- .github/workflows/ci.yml
-          git config user.name "Beloved College CI"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "style: format finance branch and capture test diagnostics"
-            git push origin HEAD:${{ github.event.pull_request.head.ref }}
-          fi
-          exit $test_status
+      - name: Check PHP formatting
+        run: vendor/bin/pint --test
+
+      - name: Run automated tests
+        run: php artisan test

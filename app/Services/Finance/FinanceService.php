@@ -114,6 +114,7 @@ class FinanceService
 
                 if ($existing) {
                     $skipped++;
+
                     continue;
                 }
 
