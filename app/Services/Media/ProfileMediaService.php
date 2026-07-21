@@ -13,14 +13,14 @@ class ProfileMediaService
         $extension = Str::lower($file->guessExtension() ?: $file->getClientOriginalExtension() ?: 'bin');
         $filename = Str::slug($identity).'-'.Str::lower(Str::random(16)).'.'.$extension;
 
-        return $file->storeAs('private/profile-media', $filename, 'local');
+        return $file->storeAs('profile-media', $filename, 'local');
     }
 
     public function replace(?string $existingPath, UploadedFile $file, string $identity): string
     {
         $newPath = $this->store($file, $identity);
 
-        if ($existingPath && str_starts_with($existingPath, 'private/profile-media/')) {
+        if ($existingPath && str_starts_with($existingPath, 'profile-media/')) {
             Storage::disk('local')->delete($existingPath);
         }
 
