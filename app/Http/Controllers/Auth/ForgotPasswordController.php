@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\PortalSurface;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -24,11 +25,14 @@ class ForgotPasswordController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'email' => ['required', 'email', 'max:255'],
         ]);
+        $user = User::query()->where('email', $data['email'])->first();
 
-        Password::sendResetLink($request->only('email'));
+        if ($user?->isActive()) {
+            Password::sendResetLink(['email' => $data['email']]);
+        }
 
         return back()->with(
             'status',
