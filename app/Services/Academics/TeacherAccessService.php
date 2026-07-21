@@ -86,8 +86,7 @@ class TeacherAccessService
         }
 
         return $this->activeAssignments($user)->contains(
-            fn (TeacherSubjectAssignment $assignment): bool =>
-                (int) $assignment->school_class_id === $schoolClassId
+            fn (TeacherSubjectAssignment $assignment): bool => (int) $assignment->school_class_id === $schoolClassId
                 && (int) $assignment->subject_id === $subjectId,
         );
     }
@@ -99,8 +98,7 @@ class TeacherAccessService
         }
 
         return $this->activeAssignments($user)->contains(
-            fn (TeacherSubjectAssignment $assignment): bool =>
-                (int) $assignment->school_class_id === $schoolClassId,
+            fn (TeacherSubjectAssignment $assignment): bool => (int) $assignment->school_class_id === $schoolClassId,
         );
     }
 

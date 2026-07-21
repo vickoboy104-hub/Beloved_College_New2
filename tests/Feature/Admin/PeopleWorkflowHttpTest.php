@@ -6,6 +6,7 @@ use App\Enums\UserRole;
 use App\Models\AcademicSession;
 use App\Models\FeeItem;
 use App\Models\SchoolClass;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -46,7 +47,7 @@ class PeopleWorkflowHttpTest extends TestCase
                 'parent_email' => 'mrs.eze@example.com',
             ]);
 
-        $student = \App\Models\Student::query()->firstOrFail();
+        $student = Student::query()->firstOrFail();
 
         $response
             ->assertRedirect(route('web.admin.students.show', $student))

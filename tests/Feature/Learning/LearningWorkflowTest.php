@@ -6,8 +6,6 @@ use App\Enums\AssessmentType;
 use App\Enums\AttendanceStatus;
 use App\Enums\UserRole;
 use App\Models\AcademicSession;
-use App\Models\Assessment;
-use App\Models\Assignment;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Models\Subject;
