@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -59,22 +56,5 @@ jobs:
       - name: Check PHP formatting
         run: vendor/bin/pint --test
 
-      - name: Run automated tests and capture diagnostics
-        if: github.event_name == 'pull_request'
-        run: |
-          set +e
-          php artisan test > docs/ci-test-output.txt 2>&1
-          test_status=$?
-          set -e
-          git fetch origin main
-          git checkout origin/main -- .github/workflows/ci.yml
-          git config user.name "Beloved College CI"
-          git config user.email "actions@users.noreply.github.com"
-          git add .github/workflows/ci.yml docs/ci-test-output.txt
-          git commit -m "chore: capture Laravel test diagnostics"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
-          exit $test_status
-
       - name: Run automated tests
-        if: github.event_name != 'pull_request'
         run: php artisan test
