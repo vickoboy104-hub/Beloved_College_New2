@@ -5,6 +5,7 @@ namespace App\Notifications;
 use App\Models\Announcement;
 use App\Models\AnnouncementDelivery;
 use App\Models\User;
+use App\Services\System\MailConfigurationService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -88,6 +89,7 @@ class SchoolAnnouncementNotification extends Notification implements ShouldQueue
 
     public function toMail(object $notifiable): MailMessage
     {
+        app(MailConfigurationService::class)->apply();
         $announcement = $this->announcement();
 
         return (new MailMessage)
