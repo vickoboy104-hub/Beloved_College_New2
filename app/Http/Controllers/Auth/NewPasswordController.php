@@ -48,8 +48,15 @@ class NewPasswordController extends Controller
                 PasswordRule::min(10)->letters()->mixedCase()->numbers(),
             ],
         ]);
-        $resetUser = null;
+        $eligibleUser = User::query()->where('email', $data['email'])->first();
 
+        if (! $eligibleUser?->isActive()) {
+            return back()
+                ->withErrors(['email' => __('passwords.token')])
+                ->withInput($request->only('email'));
+        }
+
+        $resetUser = null;
         $status = Password::reset(
             $data,
             function (User $user, string $password) use (&$resetUser, $sessions): void {
