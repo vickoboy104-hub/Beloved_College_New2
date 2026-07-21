@@ -2,31 +2,120 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Permission;
+use App\Enums\ThemeMode;
+use App\Enums\UserRole;
+use App\Services\Authorization\PermissionService;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable([
+    'name',
+    'first_name',
+    'middle_name',
+    'last_name',
+    'email',
+    'password',
+    'role',
+    'phone',
+    'status',
+    'avatar_url',
+    'avatar_path',
+    'email_verified_at',
+    'last_seen_at',
+    'must_change_password',
+    'preferred_theme',
+])]
+#[Hidden(['password', 'remember_token', 'avatar_path'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_seen_at' => 'datetime',
             'password' => 'hashed',
+            'role' => UserRole::class,
+            'must_change_password' => 'boolean',
+            'preferred_theme' => ThemeMode::class,
         ];
+    }
+
+    public function studentProfile(): HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function staffProfile(): HasOne
+    {
+        return $this->hasOne(StaffProfile::class);
+    }
+
+    public function permissionOverrides(): HasMany
+    {
+        return $this->hasMany(UserPermissionOverride::class);
+    }
+
+    public function grantedPermissionOverrides(): HasMany
+    {
+        return $this->hasMany(UserPermissionOverride::class, 'granted_by');
+    }
+
+    public function hasAnyRole(array|string|UserRole ...$roles): bool
+    {
+        $currentRole = $this->role instanceof UserRole
+            ? $this->role->value
+            : (string) $this->role;
+
+        return collect($roles)
+            ->flatten()
+            ->map(fn (mixed $role) => $role instanceof UserRole ? $role->value : (string) $role)
+            ->contains($currentRole);
+    }
+
+    public function hasPermission(Permission|string $permission): bool
+    {
+        return app(PermissionService::class)->allows($this, $permission);
+    }
+
+    public function roleLabel(): string
+    {
+        return $this->role instanceof UserRole
+            ? $this->role->label()
+            : str((string) $this->role)->headline()->toString();
+    }
+
+    public function fullName(): string
+    {
+        $segments = array_filter([
+            $this->first_name,
+            $this->middle_name,
+            $this->last_name,
+        ]);
+
+        return $segments !== [] ? implode(' ', $segments) : $this->name;
+    }
+
+    public function isActive(): bool
+    {
+        return strtolower((string) $this->status) === 'active';
+    }
+
+    public function effectiveTheme(): ThemeMode
+    {
+        if (config('platform.allow_user_theme_selection') && $this->preferred_theme instanceof ThemeMode) {
+            return $this->preferred_theme;
+        }
+
+        return ThemeMode::default();
     }
 }
