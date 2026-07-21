@@ -60,6 +60,46 @@ class User extends Authenticatable
         return $this->hasOne(StaffProfile::class);
     }
 
+    public function children(): HasMany
+    {
+        return $this->hasMany(Student::class, 'parent_user_id');
+    }
+
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(Lesson::class, 'teacher_id');
+    }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(Assignment::class, 'teacher_id');
+    }
+
+    public function assessments(): HasMany
+    {
+        return $this->hasMany(Assessment::class, 'teacher_id');
+    }
+
+    public function managedClasses(): HasMany
+    {
+        return $this->hasMany(SchoolClass::class, 'class_teacher_id');
+    }
+
+    public function teacherSubjectAssignments(): HasMany
+    {
+        return $this->hasMany(TeacherSubjectAssignment::class, 'teacher_id');
+    }
+
+    public function gradedCbtAttempts(): HasMany
+    {
+        return $this->hasMany(CbtAttempt::class, 'graded_by');
+    }
+
+    public function announcements(): HasMany
+    {
+        return $this->hasMany(Announcement::class, 'author_id');
+    }
+
     public function permissionOverrides(): HasMany
     {
         return $this->hasMany(UserPermissionOverride::class);
@@ -108,6 +148,11 @@ class User extends Authenticatable
     public function isActive(): bool
     {
         return strtolower((string) $this->status) === 'active';
+    }
+
+    public function isClassTeacher(): bool
+    {
+        return $this->managedClasses()->exists();
     }
 
     public function effectiveTheme(): ThemeMode

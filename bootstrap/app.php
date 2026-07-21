@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuditUserActions;
 use App\Http\Middleware\EnsureAccountIsActive;
 use App\Http\Middleware\EnsurePermission;
 use App\Http\Middleware\RequirePasswordChange;
@@ -17,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            AuditUserActions::class,
+        ]);
+
         $middleware->alias([
             'surface' => SetPortalSurface::class,
             'active' => EnsureAccountIsActive::class,
