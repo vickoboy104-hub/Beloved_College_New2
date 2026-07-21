@@ -85,6 +85,13 @@ return new class extends Migration
                 $table->timestamps();
             });
         }
+
+        if (Schema::hasTable('attendance_records')
+            && ! Schema::hasColumn('attendance_records', 'absence_notified_at')) {
+            Schema::table('attendance_records', function (Blueprint $table): void {
+                $table->timestamp('absence_notified_at')->nullable()->index();
+            });
+        }
     }
 
     public function down(): void
