@@ -5,6 +5,7 @@ namespace Tests\Feature\Migration;
 use App\Models\SystemHeartbeat;
 use App\Models\WebsiteMedia;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Middleware\TrustHosts;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
@@ -133,11 +134,20 @@ class MigrationReadinessCommandTest extends TestCase
         $this->assertTrue($keyCheck['details']['expected_fingerprint_configured']);
     }
 
-    public function test_untrusted_host_does_not_receive_application_content(): void
+    public function test_application_hosts_are_configured_as_exact_trusted_patterns(): void
     {
-        $response = $this->get('http://untrusted.example/');
+        $configuredHosts = array_values(config('platform.hosts'));
+        $trustedHosts = array_values(config('platform.trusted_hosts'));
+        $patterns = app(TrustHosts::class)->hosts();
 
-        $this->assertFalse($response->isSuccessful());
-        $this->assertNotContains('untrusted.example', config('platform.trusted_hosts'));
+        foreach ($configuredHosts as $host) {
+            $this->assertContains($host, $trustedHosts);
+            $this->assertContains('^'.preg_quote($host, '/').'$',$patterns);
+        }
+
+        $this->assertNotContains('untrusted.example', $trustedHosts);
+        $this->assertFalse(collect($patterns)->contains(
+            fn (string $pattern) => str_contains($pattern, '(.+\\.)?'),
+        ));
     }
 }
