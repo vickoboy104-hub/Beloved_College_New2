@@ -73,11 +73,7 @@ This document summarizes completed New2 releases without replacing the detailed 
 - preview, draft, publish, revision history and rollback
 - Admin-controlled user theme selection
 
-## Current release branch
-
-`workflows/communication-system-administration`
-
-The branch adds:
+### Communication and system administration
 
 - targeted role, class and individual announcements
 - portal notification inboxes and unread counters
@@ -92,28 +88,40 @@ The branch adds:
 - synchronous mail diagnostics
 - operational thresholds and retention settings
 
+## Current release branch
+
+`workflows/identity-hardening`
+
+The branch adds:
+
+- private email-based password recovery
+- active-account reset eligibility
+- signed surface-aware email verification
+- legacy-safe verification enforcement
+- Account Security workspace on both portal surfaces
+- database-session visibility and revocation
+- password-driven revocation of other sessions
+- complete session revocation after password reset
+- successful-login history
+- permanent security-event ledger
+- portal and optional email security alerts
+- Admin identity readiness counts and policy controls
+
 This release is complete only after its pull request passes Composer validation, migration setup, production frontend build, Laravel Pint and the full Laravel test suite.
 
-## Remaining after the communication/system release
+## Remaining after identity hardening
 
-### Identity hardening
+### Explicit product-decision modules
 
-- password-reset acceptance testing and final interface
-- email-verification workflow and acceptance testing
-- active session review and revocation
-- privileged-role security-event notifications
-- privileged-role two-factor authentication, subject to product approval
-
-### Product-decision modules
-
-These require explicit workflow requirements before implementation:
+These require detailed workflow approval before implementation:
 
 - staged online admissions application
 - timetable
 - transcript requests
-- spreadsheet import with preview
+- spreadsheet import with validation preview
 - payroll disbursement
 - hosting-specific backup dashboard and restore workflow
+- privileged-role multi-factor authentication enrollment and recovery
 
 ### Production migration and deployment
 
