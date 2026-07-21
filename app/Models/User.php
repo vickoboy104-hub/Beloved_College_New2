@@ -213,10 +213,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     private function currentSurfacePrefix(): string
     {
-        if (app()->runningInConsole() || ! app()->bound('request')) {
-            return 'web';
+        if (app()->bound('request')) {
+            return request()->getHost() === config('platform.hosts.app') ? 'app' : 'web';
         }
 
-        return request()->getHost() === config('platform.hosts.app') ? 'app' : 'web';
+        return 'web';
     }
 }
