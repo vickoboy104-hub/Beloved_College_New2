@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\AuditUserActions;
 use App\Http\Middleware\EnsureAccountIsActive;
+use App\Http\Middleware\EnsureAnyRole;
 use App\Http\Middleware\EnsurePermission;
 use App\Http\Middleware\RequirePasswordChange;
 use App\Http\Middleware\SetPortalSurface;
@@ -27,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'active' => EnsureAccountIsActive::class,
             'password.changed' => RequirePasswordChange::class,
             'permission' => EnsurePermission::class,
+            'role' => EnsureAnyRole::class,
             'last.seen' => TrackLastSeen::class,
         ]);
     })
