@@ -42,6 +42,9 @@ class Student extends Model
         'doctor_phone',
         'enrolled_at',
         'status',
+        'archived_at',
+        'archived_by',
+        'archive_reason',
     ];
 
     protected function casts(): array
@@ -49,6 +52,7 @@ class Student extends Model
         return [
             'date_of_birth' => 'date',
             'enrolled_at' => 'date',
+            'archived_at' => 'datetime',
         ];
     }
 
@@ -110,5 +114,10 @@ class Student extends Model
     public function termReports(): HasMany
     {
         return $this->hasMany(StudentTermReport::class);
+    }
+
+    public function isArchived(): bool
+    {
+        return $this->archived_at !== null;
     }
 }
