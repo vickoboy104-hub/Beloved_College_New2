@@ -6,6 +6,7 @@
     $isTeacherWorkspaceUser = $user->hasAnyRole('super_admin', 'admin', 'principal', 'teacher');
     $isStudentPortalUser = $user->hasAnyRole('student', 'parent');
     $isReportAdministrator = $surfacePrefix === 'web' && $user->hasAnyRole('super_admin', 'admin', 'principal');
+    $isFinanceUser = $surfacePrefix === 'web' && $user->hasPermission('finance.manage');
     $navItems = [
         [
             'label' => 'Dashboard',
@@ -18,6 +19,12 @@
             'route' => $surfacePrefix.'.portal.index',
             'active' => $surfacePrefix.'.portal.*',
             'visible' => $isStudentPortalUser,
+        ],
+        [
+            'label' => 'Payments',
+            'route' => $surfacePrefix.'.payments.index',
+            'active' => $surfacePrefix.'.payments.*',
+            'visible' => $isStudentPortalUser && $user->hasPermission('finance.pay_invoices'),
         ],
         [
             'label' => 'Teaching',
@@ -54,6 +61,12 @@
             'route' => 'web.admin.reports.index',
             'active' => 'web.admin.reports.*',
             'visible' => $isReportAdministrator,
+        ],
+        [
+            'label' => 'Finance',
+            'route' => 'web.admin.finance.index',
+            'active' => 'web.admin.finance.*',
+            'visible' => $isFinanceUser,
         ],
         [
             'label' => 'Teacher Access',

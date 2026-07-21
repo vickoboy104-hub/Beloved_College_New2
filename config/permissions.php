@@ -34,6 +34,8 @@ return [
             Permission::ReviewReports->value,
             Permission::PublishReports->value,
             Permission::ManageCbt->value,
+            Permission::ManageFinance->value,
+            Permission::RecordPayments->value,
         ],
 
         UserRole::Accountant->value => [

@@ -1,0 +1,446 @@
+.finance-overview-grid,
+.finance-summary-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.finance-summary-columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.finance-fact-list {
+    display: grid;
+    gap: 0;
+    margin: 1rem 0 0;
+    border-top: 1px solid var(--border);
+}
+
+.finance-fact-list div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 0;
+}
+
+.finance-fact-list dt {
+    color: var(--text-muted);
+}
+
+.finance-fact-list dd {
+    margin: 0;
+    font-weight: 850;
+}
+
+.payment-progress-row {
+    display: grid;
+    grid-template-columns: minmax(16rem, 1fr) minmax(10rem, 2fr) auto;
+    gap: 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.payment-progress-row > div:first-child {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.payment-progress-row span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.progress-track {
+    height: 0.65rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--surface-muted);
+}
+
+.progress-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--primary);
+}
+
+.gateway-status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.gateway-status-grid article {
+    display: grid;
+    gap: 0.9rem;
+    border-top: 3px solid var(--primary);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1rem 0;
+}
+
+.gateway-status-grid article > div:first-child {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.gateway-status-grid article > div:first-child span,
+.gateway-status-grid dt {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+}
+
+.gateway-status-grid dl {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+}
+
+.gateway-status-grid dl div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.gateway-status-grid dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.gateway-status-grid code {
+    font-size: 0.72rem;
+}
+
+.gateway-enable-grid {
+    margin-bottom: 1rem;
+}
+
+.gateway-fallback-field {
+    max-width: 30rem;
+}
+
+.palm-pay-warning {
+    border-bottom-color: color-mix(in srgb, var(--danger) 35%, var(--border));
+}
+
+.invoice-selection-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.gateway-choice-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 1rem 0;
+}
+
+.gateway-choice-bar > div:first-child {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.gateway-choice-bar span {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.gateway-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6rem;
+}
+
+.payment-receipt {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.payment-receipt-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 1rem;
+}
+
+.payment-receipt-header h2 {
+    margin: 0.25rem 0 0;
+}
+
+.payment-receipt-header > strong {
+    font-size: 1.15rem;
+}
+
+.receipt-facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.receipt-facts div,
+.callback-facts div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.receipt-facts dt,
+.callback-facts dt {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.receipt-facts dd,
+.callback-facts dd {
+    margin: 0;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.receipt-amount {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    margin: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.3rem;
+}
+
+.receipt-amount span,
+.receipt-amount small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.receipt-amount strong {
+    font-size: clamp(2rem, 7vw, 4rem);
+    letter-spacing: -0.05em;
+}
+
+.payment-receipt-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 2px solid var(--text);
+    padding-top: 0.8rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.payment-callback-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 85% 12%, rgba(35, 86, 216, 0.18), transparent 24rem),
+        #eef1f5;
+    color: #172033;
+}
+
+.payment-callback-shell {
+    width: min(100% - 2rem, 44rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 8vw, 6rem) 0;
+}
+
+.callback-status {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    border-top: 4px solid #2356d8;
+    border-bottom: 1px solid #d5dbe5;
+    background: #fff;
+    padding: 1.3rem 0;
+}
+
+.callback-status-failed {
+    border-top-color: #ba2f3a;
+}
+
+.callback-status-pending {
+    border-top-color: #b17800;
+}
+
+.callback-status h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 8vw, 4.6rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.callback-status > p:not(.eyebrow) {
+    margin: 0;
+    color: #5f697c;
+    line-height: 1.7;
+}
+
+.callback-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    border-top: 1px solid #d5dbe5;
+    border-bottom: 1px solid #d5dbe5;
+    padding: 1rem 0;
+}
+
+.callback-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.print-finance-page {
+    min-height: 100vh;
+    background: #eef1f5;
+    color: #172033;
+}
+
+.print-finance-sheet {
+    width: min(100% - 2rem, 60rem);
+    margin: 0 auto 2rem;
+    background: #fff;
+    padding: 2rem;
+}
+
+.print-finance-header {
+    border-bottom: 2px solid #172033;
+    padding-bottom: 1rem;
+}
+
+.print-finance-header h1 {
+    margin: 0.25rem 0;
+}
+
+.print-finance-header p:last-child {
+    margin: 0;
+    color: #5f697c;
+}
+
+.print-fee-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+}
+
+.print-fee-table th,
+.print-fee-table td {
+    border: 1px solid #cdd3dd;
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.print-fee-table th {
+    background: #f3f5f8;
+}
+
+.print-fee-table small {
+    display: block;
+    margin-top: 0.2rem;
+    color: #5f697c;
+}
+
+@media (max-width: 1080px) {
+    .finance-summary-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .receipt-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .finance-overview-grid,
+    .gateway-status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gateway-choice-bar,
+    .payment-receipt-header,
+    .payment-receipt-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .gateway-buttons {
+        justify-content: stretch;
+    }
+
+    .gateway-buttons button {
+        flex: 1 1 100%;
+    }
+
+    .payment-progress-row,
+    .receipt-facts,
+    .callback-facts {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    .payment-receipt .data-table {
+        display: table !important;
+    }
+
+    .payment-receipt .data-table thead {
+        position: static !important;
+        display: table-header-group !important;
+        width: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        clip: auto !important;
+    }
+
+    .payment-receipt .data-table tbody {
+        display: table-row-group !important;
+    }
+
+    .payment-receipt .data-table tr {
+        display: table-row !important;
+        border: 0 !important;
+        padding: 0 !important;
+    }
+
+    .payment-receipt .data-table th,
+    .payment-receipt .data-table td {
+        display: table-cell !important;
+        width: auto !important;
+        border: 1px solid #888 !important;
+        padding: 4px !important;
+    }
+
+    .payment-receipt,
+    .print-finance-sheet {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .print-finance-page {
+        background: #fff !important;
+    }
+
+    @page {
+        size: A4 portrait;
+        margin: 12mm;
+    }
+}

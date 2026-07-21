@@ -23,6 +23,13 @@ return Application::configure(basePath: dirname(__DIR__))
             AuditUserActions::class,
         ]);
 
+        $middleware->validateCsrfTokens(except: [
+            'webhooks/paystack',
+            'webhooks/flutterwave',
+            'webhooks/monnify',
+            'webhooks/palmpay',
+        ]);
+
         $middleware->alias([
             'surface' => SetPortalSurface::class,
             'active' => EnsureAccountIsActive::class,
