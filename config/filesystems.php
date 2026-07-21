@@ -9,7 +9,7 @@ return [
     |
     | Here you may specify the default filesystem disk that should be used
     | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application for file storage.
+    | based disks are available to your application for storage.
     |
     */
 
@@ -47,6 +47,21 @@ return [
             'report' => false,
         ],
 
+        'legacy_private' => [
+            'driver' => 'local',
+            'root' => env('LEGACY_PRIVATE_FILES_ROOT', storage_path('legacy/private')),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'legacy_public' => [
+            'driver' => 'local',
+            'root' => env('LEGACY_PUBLIC_FILES_ROOT', storage_path('legacy/public')),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -76,5 +91,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];
