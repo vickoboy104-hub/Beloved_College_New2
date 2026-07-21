@@ -177,3 +177,5 @@ The release tests:
 - audit-log filtering
 - failed-job deletion
 - notifications, delivery, heartbeat and absence schema
+
+The formatted branch must pass the repository's standard read-only Composer, migration, production asset, Pint and Laravel test pipeline before merge.
