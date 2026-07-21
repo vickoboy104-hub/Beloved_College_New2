@@ -44,9 +44,7 @@ class AppServiceProvider extends ServiceProvider
             $delivery->update([
                 'status' => $delivery->delivered_at ? 'partial' : 'failed',
                 'failed_at' => now(),
-                'failure_reason' => str((string) data_get($event->data, 'exception', 'Notification delivery failed.'))
-                    ->limit(2000)
-                    ->toString(),
+                'failure_reason' => 'Notification delivery failed on the '.$event->channel.' channel.',
             ]);
         });
     }
