@@ -14,6 +14,7 @@ class AssignmentSubmission extends Model
         'assignment_id',
         'student_id',
         'content',
+        'attachment_paths',
         'submitted_at',
         'score',
         'feedback',
@@ -23,6 +24,7 @@ class AssignmentSubmission extends Model
     protected function casts(): array
     {
         return [
+            'attachment_paths' => 'array',
             'submitted_at' => 'datetime',
             'score' => 'decimal:2',
         ];
