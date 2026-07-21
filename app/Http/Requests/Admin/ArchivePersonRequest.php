@@ -8,7 +8,7 @@ class ArchivePersonRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()?->hasPermission('people.manage_users')
+        return $this->user()?->hasPermission('identity.manage_users')
             || $this->user()?->hasPermission('people.manage_students')
             || $this->user()?->hasPermission('people.manage_staff');
     }
