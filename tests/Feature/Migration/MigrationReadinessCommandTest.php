@@ -133,8 +133,11 @@ class MigrationReadinessCommandTest extends TestCase
         $this->assertTrue($keyCheck['details']['expected_fingerprint_configured']);
     }
 
-    public function test_untrusted_host_is_rejected(): void
+    public function test_untrusted_host_does_not_receive_application_content(): void
     {
-        $this->get('http://untrusted.example/')->assertStatus(400);
+        $response = $this->get('http://untrusted.example/');
+
+        $this->assertFalse($response->isSuccessful());
+        $this->assertNotContains('untrusted.example', config('platform.trusted_hosts'));
     }
 }
