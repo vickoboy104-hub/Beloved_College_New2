@@ -26,6 +26,14 @@ Route::domain((string) config('platform.hosts.web'))
 Route::domain((string) config('platform.hosts.web'))
     ->middleware('surface:web')
     ->name('web.')
+    ->group(base_path('routes/surfaces/communication-system.php'));
+Route::domain((string) config('platform.hosts.web'))
+    ->middleware('surface:web')
+    ->name('web.')
+    ->group(base_path('routes/surfaces/notifications.php'));
+Route::domain((string) config('platform.hosts.web'))
+    ->middleware('surface:web')
+    ->name('web.')
     ->group(base_path('routes/surfaces/theme-preferences.php'));
 
 Route::domain((string) config('platform.hosts.app'))
@@ -36,6 +44,10 @@ Route::domain((string) config('platform.hosts.app'))
     ->middleware('surface:app')
     ->name('app.')
     ->group(base_path('routes/surfaces/finance-app.php'));
+Route::domain((string) config('platform.hosts.app'))
+    ->middleware('surface:app')
+    ->name('app.')
+    ->group(base_path('routes/surfaces/notifications.php'));
 Route::domain((string) config('platform.hosts.app'))
     ->middleware('surface:app')
     ->name('app.')
