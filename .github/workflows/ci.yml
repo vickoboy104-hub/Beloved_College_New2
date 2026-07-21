@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -43,21 +40,6 @@ jobs:
 
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
-
-      - name: Apply one-time formatting and restore CI
-        if: github.event_name == 'pull_request'
-        run: |
-          vendor/bin/pint
-          git fetch origin main
-          git checkout origin/main -- .github/workflows/ci.yml
-          git config user.name "Beloved College CI"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            exit 0
-          fi
-          git commit -m "style: apply Laravel Pint formatting"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}
 
       - name: Prepare test environment
         run: |

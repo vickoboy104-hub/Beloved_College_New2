@@ -13,6 +13,7 @@ use App\Models\Testimonial;
 use App\Models\User;
 use App\Models\WebsiteMedia;
 use App\Notifications\ContactMessageReceived;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -158,7 +159,7 @@ class PublicWebsiteService
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection<int, WebsiteMedia>
+     * @return Collection<int, WebsiteMedia>
      */
     public function media(string $collection)
     {
@@ -171,7 +172,7 @@ class PublicWebsiteService
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection<int, Announcement>
+     * @return Collection<int, Announcement>
      */
     public function publishedAnnouncements(int $limit = 12)
     {

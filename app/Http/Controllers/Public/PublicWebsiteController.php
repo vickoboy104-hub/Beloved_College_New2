@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+use App\Models\Setting;
 use App\Models\Testimonial;
 use App\Models\WebsiteMedia;
 use App\Services\Website\PublicWebsiteService;
@@ -25,7 +26,7 @@ class PublicWebsiteController extends Controller
     {
         return view('public.page', [
             'page' => $website->page('about'),
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -33,7 +34,7 @@ class PublicWebsiteController extends Controller
     {
         return view('public.page', [
             'page' => $website->page('admissions'),
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -41,7 +42,7 @@ class PublicWebsiteController extends Controller
     {
         return view('public.contact', [
             'page' => $website->page('contact'),
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -69,7 +70,7 @@ class PublicWebsiteController extends Controller
                 ->orderByDesc('published_at')
                 ->latest()
                 ->paginate(12),
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -84,7 +85,7 @@ class PublicWebsiteController extends Controller
 
         return view('public.news.show', [
             'announcement' => $announcement,
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
@@ -92,7 +93,7 @@ class PublicWebsiteController extends Controller
     {
         return view('public.gallery', [
             'gallery' => $website->media('gallery'),
-            'settings' => \App\Models\Setting::publicSettings(),
+            'settings' => Setting::publicSettings(),
         ]);
     }
 
