@@ -3,6 +3,7 @@
 use App\Http\Middleware\AuditUserActions;
 use App\Http\Middleware\EnsureAccountIsActive;
 use App\Http\Middleware\EnsureAnyRole;
+use App\Http\Middleware\EnsureEmailIsVerifiedWhenRequired;
 use App\Http\Middleware\EnsurePermission;
 use App\Http\Middleware\RequirePasswordChange;
 use App\Http\Middleware\SetPortalSurface;
@@ -21,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
             AuditUserActions::class,
+            EnsureEmailIsVerifiedWhenRequired::class,
         ]);
 
         $middleware->validateCsrfTokens(except: [
