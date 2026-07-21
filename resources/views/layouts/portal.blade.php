@@ -1,4 +1,5 @@
 @php
+    $surface = $surface ?? $portalSurface;
     $theme = auth()->user()->effectiveTheme();
     $surfacePrefix = $surface === \App\Enums\PortalSurface::AppPortal ? 'app' : 'web';
     $user = auth()->user();
